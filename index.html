@@ -1,0 +1,36 @@
+<HTML>
+	<head>
+		<title>Camagru</title>
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+	</head>
+	<body>
+		<div id="header">
+			<h1>Camagru</h1>
+		</div>
+		<div id="box">
+			<form class="container" method="POST" action="php/login.php">
+				<p>You already have an account ?</p>
+				<label>Login</label>
+				<input class="input" type="text" name="login" value="">
+				<label>Password</label>
+				<input class="input" type="password" name="passwd" value="">
+				<button class="btn" name="submit" value="OK">Submit</button>
+			</form>
+			<hr />
+			<form class="container" method="POST" action="php/create.php">
+				<p>You need to create any account</p>
+				<label>Login</label>
+				<input class="input" type="text" name="login" value="">
+				<label>Password</label>
+				<input class="input" type="password" name="passwd" value="">
+				<label>Confirm Password</label>
+				<input class="input" type="password" name="cpasswd" value="">
+				<button class="btn" name="submit" value="OK">Submit</button>
+			</form>
+		</div>
+		<div id="footer">
+			<hr />
+			<p>@2017 dpaunovi</p>
+		</div>
+	</body>
+</HTML>
