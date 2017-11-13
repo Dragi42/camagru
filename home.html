@@ -22,18 +22,6 @@
 				<h2>Take or upload a Picture</h2>
 				<video autoplay="true" id="videoElement">
 				</video>
-			</div>
-			<hr>
-			<div class="video">
-			<h2>History of Pictures</h2>
-			</div>
-		</div>
-		<div id="footer">
-			<hr />
-			<p>@2017 dpaunovi</p>
-		</div>
-	</body>
-</html>
 			<script>
 				var video = document.querySelector("#videoElement");
 				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -47,4 +35,16 @@
 					// do something
 				}
 			</script>
+			</div>
+			<hr>
+			<h2>History of Pictures</h2>
+			<div class="pictures">
+			</div>
+		</div>
+		<div id="footer">
+			<hr />
+			<p>@2017 dpaunovi</p>
+		</div>
+	</body>
+</html>
 
