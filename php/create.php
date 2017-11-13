@@ -3,9 +3,10 @@
 	$login = $_POST[login];
 	$passwd = $_POST[passwd];
 	$cpasswd = $_POST[cpasswd];
+	$email = $_POST[email];
 	$file = "../private/passwd";
 
-	if (!$login || !$passwd || !$cpasswd || $_POST[submit] != "OK")
+	if (!$login || !$passwd || !$cpasswd || !$email || $_POST[submit] != "OK")
 		echo "Error: All of the form is not complete\n";
 	else if ($passwd != $cpasswd)
 		echo "Error: Password incorrect\n";
