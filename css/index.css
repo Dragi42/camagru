@@ -1,0 +1,52 @@
+#header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	box-shadow: 0px 2px lightgrey;
+	margin-top: -10px;
+	margin-bottom: 50px;
+}
+
+h1 {
+	text-align: center;
+}
+
+#login {
+	display: flex;
+	border: 2px solid black;
+}
+
+.logo {
+	margin-left: 10px;
+}
+
+.navbar {
+	margin-right: 10px;
+}
+
+.list {
+	list-style-type: none;
+}
+
+.list li a {
+	color: black;
+	text-decoration: none;
+}
+
+.list li a:hover {
+	padding-bottom: 16px;
+	box-shadow: 0px 2px red;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	margin: 10 20 10 20;
+}
+
+.button {
+	width: 50%;
+}
