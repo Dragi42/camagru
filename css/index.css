@@ -11,7 +11,7 @@
 	text-align: right;
 	font-style: italic;
 	color: lightgrey;
-	position: absolute;
+	position: relative;
     bottom: 0px;
 	width: 99%;
 	height: 70px;
@@ -86,11 +86,17 @@ h1 {
 	border-radius: 5px;
 }
 
-.pictures {
-	display: flex;
-	height: 200px;
-	flex-wrap: wrap;
-	align-content: flex-start;
+/*
+div.gallery {
+	margin: 5px;
+	border: 1px solid #ccc;
+	float: left;
+	width: 180px;
+}
+
+div.gallery img {
+	width: 100%;
+	height: auto;
 }
 
 video {
@@ -102,4 +108,4 @@ video {
 .video {
 	width: 90%;
 	text-align: center;
-}
+}*/
