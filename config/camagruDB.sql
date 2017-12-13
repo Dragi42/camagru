@@ -1,0 +1,1 @@
+CREATE DATABASE camagru CHARACTER SET 'utf8';
