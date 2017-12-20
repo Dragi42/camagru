@@ -31,7 +31,7 @@
 			`login` VARCHAR(32) NOT NULL,
 			`describe` VARCHAR(128) DEFAULT NULL,
 			`tags` VARCHAR(32) DEFAULT NULL,
-			`comment` VARCHAR(128) DEFAULT NULL,
+			`comment` int(11) DEFAULT NULL,
 			`like` int(11) unsigned DEFAULT NULL
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
