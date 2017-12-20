@@ -12,7 +12,7 @@
 			</div>
 			<div class="navbar">
 				<ul class="list">
-					<li><a href="index.html">Se connecter / Creez un compte</a></li>
+					<li><a href="index.php">Log out</a></li>
 				</ul>
 			</div>
 		</div>

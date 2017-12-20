@@ -1,3 +1,20 @@
+<?php
+
+	$db = new PDO('mysql:host=127.0.0.1', 'root', 'root');
+	$db -> query('CREATE DATABASE camagru CHARACTER SET utf8;
+					USE camagru;
+					CREATE TABLE IF NOT EXISTS Users (
+					id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+					login VARCHAR(32) NOT NULL,
+					passwd VARCHAR(128) NOT NULL,
+					mail VARCHAR(64) NOT NULL
+					) ENGINE=InnoDB;');
+
+	$req = $db -> query('SELECT * FROM pictures');
+	
+
+?>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -12,33 +29,22 @@
 			</div>
 			<div class="navbar">
 				<ul class="list">
-					<li><a href="index.html">Se connecter / Creez un compte</a></li>
+					<li><a href="login.php">Sign in / Sign up</a></li>
 				</ul>
 			</div>
 		</div>
 		<h1>Welcome to Camagru !</h1>
 		<div class="box">
-			<form action="php/login.php" method="POST" class="container">
-			<h2>Already have any account ?</h2>
-				<label>Login:</label>
-				<input class="input" type="text" name="login" value="">
-				<label>Password:</label>
-				<input class="input" type="password" name="password" value=""><br />
-				<button class="button" type="submit" name="submit" value="OK">Login</button>
-			</form>
-			<hr>
-			<form action="php/create.php" method="POST" class="container">
-			<h2>Create a new account and join us !</h2>
-				<label>Login:</label>
-				<input class="input" type="text" name="login" value="">
-				<label>E-mail:</label>
-				<input class="input" type="email" name="email" value="">
-				<label>Password:</label>
-				<input class="input" type="password" name="passwd" value="">
-				<label>Confirm Password:</label>
-				<input class="input" type="password" name="cpasswd" value=""><br />
-				<button class="button" type="submit" name="submit" value="OK">Create</button>
-			</form>
+			<div class="history">
+				<h2>All of Pictures</h2>
+				<br />
+				<div class="gallery">
+					<img src="css/img/pic1.png" alt="" width="300" height="200"/>
+					<img src="css/img/pic1.png" alt="" width="300" height="200"/>
+					<img src="css/img/pic1.png" alt="" width="300" height="200"/>
+					<img src="css/img/pic1.png" alt="" width="300" height="200"/>
+				</div>
+			</div>
 		</div>
 		<div id="footer">
 			<hr />
@@ -46,3 +52,4 @@
 		</div>
 	</body>
 </html>
+

@@ -12,7 +12,7 @@
 			</div>
 			<div class="navbar">
 				<ul class="list">
-					<li><a href="index.html">Se connecter / Creez un compte</a></li>
+					<li><a href="#">Sign in / Sign up</a></li>
 				</ul>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 				<label>Login:</label>
 				<input class="input" type="text" name="login" value="">
 				<label>E-mail:</label>
-				<input class="input" type="email" name="email" value="">
+				<input class="input" type="mail" name="mail" value="">
 				<label>Password:</label>
 				<input class="input" type="password" name="passwd" value="">
 				<label>Confirm Password:</label>

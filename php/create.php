@@ -3,10 +3,10 @@
 	$login = $_POST[login];
 	$passwd = $_POST[passwd];
 	$cpasswd = $_POST[cpasswd];
-	$email = $_POST[email];
+	$mail = $_POST[mail];
 	$file = "../private/passwd";
 
-	if (!$login || !$passwd || !$cpasswd || !$email || $_POST[submit] != "OK")
+	if (!$login || !$passwd || !$cpasswd || !$mail || $_POST[submit] != "OK")
 		echo "Error: All of the form is not complete\n";
 	else if ($passwd != $cpasswd)
 		echo "Error: Password incorrect\n";
@@ -26,9 +26,9 @@
 		}
 		if (!$exist) {
 			$passwd = hash('whirlpool', $_POST[passwd]);
-			$current[] = array('login' => $login, 'passwd' => $passwd);
+			$current[] = array('login' => $login,
+				'passwd' => $passwd, 'mail' => $mail);
 			file_put_contents($file, serialize($current));
-			echo "Account created\n";
 		}
 	}
 
