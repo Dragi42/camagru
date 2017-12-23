@@ -11,11 +11,10 @@ session_start();
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 	</head>
 	<body>
-		<div class="box">
-			<div class="history">
-				<h2>All of Pictures</h2>
-				<br />
-				<div class="gallery">
+		<div class="container">
+			<h2>All of Pictures</h2>
+			<br />
+			<div class="gallery">
 <?php
 	include("./Database/db.php");
 	include("./function.php");
@@ -23,7 +22,6 @@ session_start();
 		get_img($db, "ORDER BY `id` desc");
 	}
 ?>
-				</div>
 			</div>
 		</div>
 		<div id="footer">
