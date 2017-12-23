@@ -4,6 +4,7 @@ session_start();
 if (!$_SESSION['logged_on_user'])
 	header("location: index.php");
 include("header.php");
+include("./function.php");
 ?>
 
 <html>
@@ -24,22 +25,20 @@ include("header.php");
 					<div class="controls">
 						<a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
 						<a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
-						<a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>
+						<a href="#" id="download-photo" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>
 					</div>
 					<canvas></canvas>
 				</div>
+<form method="POST" action="getdata.php" enctype="multipart/form-data">
+ <input type="file" name="myimage">
+ <input type="submit" name="submit_image" value="Upload">
+</form>
 			</div>
 			<hr>
 			<div class="container">
 				<h2>History of Pictures</h2>
 				<div class="gallery">
-		<?php
-			include("./Database/db.php");
-			include("./function.php");
-			if ($db = connect_db()) {
-				get_img($db, "where login='".$_SESSION['logged_on_user']."'");
-			}
-		?>
+		<?php get_img($db, "where login='".$_SESSION['logged_on_user']."'");?>
 				</div>
 			</div>
 		</div>

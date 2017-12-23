@@ -27,7 +27,7 @@
 	$sql ="
 		CREATE TABLE IF NOT EXISTS Pictures (
 			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
-			`path_img` VARCHAR(100) NOT NULL,
+			`path_img` LONGBLOB NOT NULL,
 			`login` VARCHAR(32) NOT NULL,
 			`describe` VARCHAR(128) DEFAULT NULL,
 			`tags` VARCHAR(32) DEFAULT NULL,

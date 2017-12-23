@@ -1,5 +1,8 @@
 <?php
 
+include("./Database/db.php");
+
+if ($db = connect_db()) {
 	function get_img($db, $param) {
 		$sql = "SELECT * FROM `Pictures` ".$param.";";
 		foreach ($db->query($sql) as $row) {
@@ -15,4 +18,9 @@
 		}
 	}
 
+	function upload_img($db, $param) {
+		$db->query("INSERT INTO `Pictures` (`path_img`, `login`) VALUES
+				('".$param."', '".$_SESSION['login']."')");
+	}
+}
 ?>

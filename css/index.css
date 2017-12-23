@@ -88,7 +88,6 @@ html{
 }
 
 .container {
-	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
@@ -122,6 +121,7 @@ html{
 
 .app video#camera-stream{
 	display: none;
+	min-width: 800px;
 	width: 100%;
 }
 
@@ -215,6 +215,11 @@ html{
 @media(max-width: 1402px){
 	.box{
 		display: block;
+	}
+	.app video#camera-stream{
+		display: none;
+		min-width: 300px;
+		width: 100%;
 	}
 }
 
