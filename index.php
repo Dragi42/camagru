@@ -20,7 +20,7 @@ session_start();
 	include("./Database/db.php");
 	include("./function.php");
 	if ($db = connect_db()) {
-		get_img($db, "");
+		get_img($db, "ORDER BY `id` desc");
 	}
 ?>
 				</div>

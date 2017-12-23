@@ -1,7 +1,9 @@
 <?php
 
-include("header.php");
 session_start();
+if (!$_SESSION['logged_on_user'])
+	header("location: index.php");
+include("header.php");
 ?>
 
 <html>
@@ -14,21 +16,7 @@ session_start();
 		<div class="box">
 			<div class="video">
 				<h2>Take or upload a Picture</h2>
-				<video autoplay="true" id="videoElement">
-				</video>
-			<script>
-				var video = document.querySelector("#videoElement");
-				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-				if (navigator.getUserMedia) {
-					navigator.getUserMedia({video: true}, handleVideo, videoError);
-				}
-				function handleVideo(stream) {
-					video.src = window.URL.createObjectURL(stream);
-				}
-				function videoError(e) {
-					// do something
-				}
-			</script>
+				<video autoplay="true" id="videoElement"></video>
 			</div>
 			<hr>
 			<div class="history">
@@ -49,6 +37,6 @@ session_start();
 			<hr />
 			<p>@2017 dpaunovi</p>
 		</div>
+		<script src="webcam.js"></script>
 	</body>
 </html>
-
