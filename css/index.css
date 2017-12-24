@@ -42,6 +42,15 @@ html{
 	display: flex;
 }
 
+.form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10 20 10 20;
+	text-align: center;
+	width: 100%;
+}
+
 .logo {
 	margin-left: 10px;
 }
