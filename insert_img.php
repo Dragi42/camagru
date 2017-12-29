@@ -12,7 +12,7 @@
 					('$img', '$login');";
 			$db->query($sql);
 		}
-//		header("location: home.php");
+		header("location: home.php");
 	}
-//	header("location: index.php");
+	header("location: index.php");
 ?>
