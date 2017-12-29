@@ -38,6 +38,15 @@ html{
 	color: #333;
 }
 
+.form{
+	display: flex;
+	flex-direction: column;
+	margin: 20 0 20 0;
+	text-align: center;
+	width: 100%;
+	align-items: center;
+}
+
 .box{
 	display: flex;
 }
@@ -159,7 +168,7 @@ html{
 	display: none;
 }
 
-.app .controls a{
+.app .controls button{
 	border-radius: 50%;
 	color: #fff;
 	background-color: #111;
@@ -171,22 +180,22 @@ html{
 	-webkit-tap-highlight-color: transparent;
 }
 
-.app .controls a:hover{
+.app .controls button:hover{
 	opacity: 1;
 }
 
-.app .controls a.disabled{
+.app .controls button.disabled{
 	background-color: #555;
 	opacity: 0.5;
 	cursor: default;
 	pointer-events: none;
 }
 
-.app .controls a.disabled:hover{
+.app .controls button.disabled:hover{
 	opacity: 0.5;
 }
 
-.app .controls a i{
+.app .controls button i{
 	font-size: 18px;
 }
 

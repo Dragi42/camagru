@@ -33,7 +33,7 @@ echo "<html>
 	</head>
 	<body>
 		<div class='box'>
-			<form action='Database/auth/auth.php' method='POST' class='container'>
+			<form action='Database/auth/auth.php' method='POST' class='form'>
 			<h2>Already have any account ?</h2>
 				<label>Login:</label>
 				<input class='input' type='text' name='login' value=''>
@@ -42,7 +42,7 @@ echo "<html>
 				<button class='button' type='submit' name='submit' value='OK'>Login</button>
 			</form>
 			<hr>
-			<form action='Database/create/create.php' method='POST' class='container'>
+			<form action='Database/create/create.php' method='POST' class='form'>
 			<h2>Create a new account and join us !</h2>
 				<label>Login:</label>
 				<input class='input' type='text' name='login' value=''>

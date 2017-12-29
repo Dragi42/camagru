@@ -20,16 +20,16 @@ include("./function.php");
 				<div class="app">
 					<a href="#" id="start-camera" class="visible">Touch here to start the app.</a>
 					<video id="camera-stream"></video>
-					<img id="snap">
+					<img id="snap"></img>
 					<p id="error-message"></p>
-					<div class="controls">
-						<a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
-						<a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
-						<a href="#" id="download-photo" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>
-					</div>
+					<form method="POST" action="upload.php" enctype="mulitport/form-data" class="controls">
+						<button href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></button>
+						<button href="#" id="take-photo" type="hidden" title="Take Photo"><i class="material-icons">camera_alt</i></button>
+						<button id="download-photo" type="submit" name="myimage" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></button>
+					</form>
 					<canvas></canvas>
 				</div>
-<form method="POST" action="getdata.php" enctype="multipart/form-data">
+<form method="POST" action="upload.php" enctype="multipart/form-data">
  <input type="file" name="myimage">
  <input type="submit" name="submit_image" value="Upload">
 </form>
