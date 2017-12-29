@@ -49,6 +49,7 @@ html{
 
 .box{
 	display: flex;
+	justify-content: space-around;
 }
 
 .form{
@@ -106,9 +107,7 @@ html{
 }
 
 .container {
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
+	width: 50%;
 	margin: 10 20 10 20;
 	text-align: center;
 }
@@ -139,7 +138,7 @@ html{
 
 .app video#camera-stream{
 	display: none;
-	min-width: 800px;
+	min-width: 600px;
 	width: 100%;
 }
 
@@ -232,7 +231,11 @@ html{
 
 @media(max-width: 1402px){
 	.box{
-		display: block;
+		flex-direction: column;
+		align-items: center;
+	}
+	.container{
+		width: 95%;
 	}
 	.app video#camera-stream{
 		display: none;
@@ -242,10 +245,6 @@ html{
 }
 
 @media(max-width: 1000px){
-	.container{
-		margin: 40px;
-	}
-
 	.app #start-camera.visible{
 		display: block;
 	}
