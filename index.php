@@ -19,9 +19,7 @@ session_start();
 			<br />
 			<h2>Merry Christmas mader faker</h2>
 			<div class="gallery">
-<?php
-		get_img($db, "ORDER BY `id` desc");
-?>
+<?php	get_img($db, "ORDER BY `id` desc");?>
 			</div>
 		</div>
 </div>

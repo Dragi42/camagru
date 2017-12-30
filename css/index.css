@@ -107,7 +107,7 @@ html{
 }
 
 .container {
-	width: 50%;
+	width: 90%;
 	margin: 10 20 10 20;
 	text-align: center;
 }
@@ -233,9 +233,6 @@ html{
 	.box{
 		flex-direction: column;
 		align-items: center;
-	}
-	.container{
-		width: 95%;
 	}
 	.app video#camera-stream{
 		display: none;
