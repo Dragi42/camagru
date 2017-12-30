@@ -3,7 +3,7 @@ include("./Database/db.php");
 session_start();
 $login = $_SESSION['logged_on_user'];
 
-if ($_POST['submit_image'] == "Upload") {
+if ($_POST['submit_image'] == "Upload" && $_POST['myimage'] != NULL) {
 	$image_name = $_FILES["myimage"]["name"];
 
 	$data = file_get_contents($_FILES['myimage']['tmp_name']);
@@ -14,7 +14,7 @@ else {
 	$base64 = $_POST['myimage'];
 }
 
-if ($db = connect_db())
+if (($db = connect_db()) && $base64 != '')
 {
 	$sql = "
 		INSERT INTO `Pictures` (`path_img`, `login`) VALUES
