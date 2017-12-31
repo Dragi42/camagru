@@ -25,15 +25,17 @@ if ($_SESSION['created'] == -3) {
 	$_SESSION['created'] = 0;
 }
 
-echo "<html>
+?>
+
+<html>
 	<head>
 		<meta charset='utf-8'>
 		<title>Camagru - Log in</title>
-		<link rel='stylesheet' type='text/css' href='css/index.css' />
+		<link rel='stylesheet' type='text/css' href='../style/index.css' />
 	</head>
 	<body>
 		<div class='box'>
-			<form action='Database/auth/auth.php' method='POST' class='form'>
+			<form action='../Database/auth/auth.php' method='POST' class='form'>
 			<h2>Already have any account ?</h2>
 				<label>Login:</label>
 				<input class='input' type='text' name='login' value=''>
@@ -42,7 +44,7 @@ echo "<html>
 				<button class='button' type='submit' name='submit' value='OK'>Login</button>
 			</form>
 			<hr>
-			<form action='Database/create/create.php' method='POST' class='form'>
+			<form action='../Database/create/create.php' method='POST' class='form'>
 			<h2>Create a new account and join us !</h2>
 				<label>Login:</label>
 				<input class='input' type='text' name='login' value=''>
@@ -55,10 +57,5 @@ echo "<html>
 				<button class='button' type='submit' name='submit' value='OK'>Create</button>
 			</form>
 		</div>
-		<div id='footer'>
-			<hr />
-			<p>@2017 dpaunovi</p>
-		</div>
 	</body>
-</html>";
-?>
+</html>
