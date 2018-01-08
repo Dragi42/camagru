@@ -1,11 +1,12 @@
 <?php
-include("./Database/db.php");
 session_start();
+include("../config/init.php");
+
 $login = $_SESSION['logged_on_user'];
+$type = $_FILES['myimage']['type'];
 
-if ($_POST['submit_image'] == "Upload" && $_POST['myimage'] != NULL) {
-	$image_name = $_FILES["myimage"]["name"];
-
+if ($_POST['submit_image'] == "Upload" && ($type == 'image/jpeg' || $type == 'image/png')) {
+	$image_name = $_FILES["myimage"]['name'];
 	$data = file_get_contents($_FILES['myimage']['tmp_name']);
 	$base64 = 'data:image/png;base64,'.base64_encode($data);
 }
@@ -22,5 +23,5 @@ if (($db = connect_db()) && $base64 != '')
 		";
 	$db -> query($sql);
 }
-	header("location: home.php");
+	header("location: .././?module=login&action=home");
 ?>

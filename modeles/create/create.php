@@ -1,6 +1,7 @@
 <?php
-	include ("../db.php");
-	session_start();
+	
+session_start();
+	include '../../config/init.php';
 
 	$login = $_POST[login];
 	$passwd = $_POST[passwd];
@@ -9,7 +10,7 @@
 
 	if (!$login || !$passwd || !$cpasswd || !$mail || $_POST[submit] != "OK") {
 		$_SESSION['created'] = -3;
-		header('location: ../../login.php');
+		header('location: ../../.?module=auth&action=form');
 	}
 	else {
 		if ($db = connect_db()) {
@@ -19,13 +20,13 @@
 				if ($row['login'] == $login) {
 					$exist = 1;
 					$_SESSION['created'] = -2;
-					header('location: ../../login.php');
+					header('location: ../../.?module=auth&action=form');
 				}
 			}
 		}
 		if ($passwd != $cpasswd) {
 			$_SESSION['created'] = -1;
-			header('location: ../../login.php');
+			header('location: ../../.?module=auth&action=form');
 		}
 		if (!$exist) {
 			$passwd = hash('whirlpool', $_POST[passwd]);
@@ -34,7 +35,7 @@
 				('$login', '$passwd', '$mail');";
 			$db -> query($req);
 			$_SESSION['created'] = 1;
-			header('location: ../../login.php');
+			header('location: ../../.?module=auth&action=form');
 		}
 	}
 

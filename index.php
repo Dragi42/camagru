@@ -27,8 +27,8 @@ if (!empty($_GET['module'])) {
 
 	// Sinon, on affiche la page d'accueil
 	else {
-		require 'modeles/function.php';
-		$images = get_img();
+		require 'modeles/images/get_img.php';
+		$images = get_all_img();
 		require 'view/index.php';
 	}
 
@@ -36,8 +36,8 @@ if (!empty($_GET['module'])) {
 }
 
 else {
-	require 'modeles/function.php';
-	$images = get_img();
+	require 'modeles/images/get_img.php';
+	$images = get_all_img();
 	require 'view/index.php';
 }
 

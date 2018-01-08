@@ -1,5 +1,8 @@
 <?php
-	include("../db.php");
+
+	session_start();
+	include '../../config/init.php';
+
 	function auth($log, $pwd){
 		if ($log && $pwd)
 		{
