@@ -38,15 +38,6 @@ html{
 	color: #333;
 }
 
-.form{
-	display: flex;
-	flex-direction: column;
-	margin: 20 0 20 0;
-	text-align: center;
-	width: 100%;
-	align-items: center;
-}
-
 .box{
 	display: flex;
 	justify-content: space-around;
@@ -109,6 +100,14 @@ html{
 	border: 2px solid black;
 	border-radius: 10px;
 	text-shadow: 2px 2px black;
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	width: 60%;
+	justify-content: space-around;
+	margin: auto;
 }
 
 .container {
@@ -233,7 +232,6 @@ html{
 	display: flex;
 }
 
-
 @media(max-width: 1402px){
 	.box{
 		flex-direction: column;
@@ -243,6 +241,12 @@ html{
 		display: none;
 		min-width: 300px;
 		width: 100%;
+	}
+}
+
+@media(max-width: 1200px){
+	.gallery {
+		width: 80%;
 	}
 }
 

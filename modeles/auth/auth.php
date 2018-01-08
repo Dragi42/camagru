@@ -6,9 +6,13 @@
 			$_SESSION['logged_on_user'] = $_POST['login'];
 			header("location: ../../.");
 		}
-		else
-			header("location: ../.././?module=login&action=form");
+		else if ($i == 0)
+			echo "This account dosen't exist";
+		else if ($i == -1)
+			echo "Wrong password";
+		else if ($i == -2)
+			echo 'Complete the form please';
 	}
 	else
-		header("location: ../.././?module=login&action=form");
+		header("location: ../.././?module=auth&action=form");
 ?>
