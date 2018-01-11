@@ -9,23 +9,23 @@
 			<form action='./modeles/auth/auth.php' method='POST' class='form'>
 			<h2>Already have any account ?</h2>
 				<label>Login:</label>
-				<input class='input' type='text' name='login' value=''>
+				<input class='input' type='text' name='login' value='' required>
 				<label>Password:</label>
-				<input class='input' type='password' name='password' value=''><br />
-				<button class='button' type='submit' name='submit' value='OK'>Login</button>
+				<input class='input' type='password' name='password' value='' required><br />
+				<button class='button' type='submit' name='submit' value='OK' required>Login</button>
 			</form>
 			<hr>
 			<form action='./modeles/create/create.php' method='POST' class='form'>
 			<h2>Create a new account and join us !</h2>
 				<label>Login:</label>
-				<input class='input' type='text' name='login' value=''>
+				<input class='input' type='text' name='login' value='' required>
 				<label>E-mail:</label>
-				<input class='input' type='mail' name='mail' value=''>
+				<input class='input' type='mail' name='mail' value='' required>
 				<label>Password:</label>
-				<input class='input' type='password' name='passwd' value=''>
+				<input class='input' type='password' name='passwd' value='' required>
 				<label>Confirm Password:</label>
-				<input class='input' type='password' name='cpasswd' value=''><br />
-				<button class='button' type='submit' name='submit' value='OK'>Create</button>
+				<input class='input' type='password' name='cpasswd' value='' required><br />
+				<button class='button' type='submit' name='submit' value='OK' required>Create</button>
 			</form>
 		</div>
 	</body>

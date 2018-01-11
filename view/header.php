@@ -2,6 +2,7 @@
 	<head>
 		<meta charset='utf-8'>
 		<link rel='stylesheet' type='text/css' href='../style/index.css'>
+		<meta name="viewport" content="width=device-width, initial-scale=0.7">
 	</head>
 	<body>
 		<div id='header'>
@@ -14,9 +15,10 @@
 
 	if ($_SESSION['logged_on_user']) {
 		echo "
-					<li><a href='./?module=login&action=home'>".$_SESSION['logged_on_user']."</a></li>
-					<li><a href='./'>Accueil</a></li>
-					<li><a href='./?module=auth&action=logout'>Log out</a></li>
+					<li><a href='./?module=login&action=home' title='Home'>".$_SESSION['logged_on_user']."</a></li>
+					<li><a href='./' title='Accueil'>Accueil</a></li>
+					<li><a href='#' title='Settings'><i class='material-icons'>settings</i></a></li>
+					<li><a href='./?module=auth&action=logout' title='Log out'>Log out</a></li>
 				</ul>
 			</div>
 		</div>

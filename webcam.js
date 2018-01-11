@@ -53,7 +53,7 @@ take_photo_btn.addEventListener("click", function(e){
 	download_photo_btn.classList.remove("disabled");
 
 	// Set the href attribute of the download button to the snap url.
-	download_photo_btn.setAttribute("value", snap);
+	download_photo_btn.setAttribute('value', snap);
 
 	// Pause video playback of stream.
 	video.pause();
@@ -63,12 +63,13 @@ delete_photo_btn.addEventListener("click", function(e){
 	e.preventDefault();
 	
 	// Hide image.
-	image.setAttribute('src', "");
+	image.setAttribute('src', '');
 	image.classList.remove("visible");
 
 	// Disable delete and save buttons
 	delete_photo_btn.classList.add("disabled");
 	download_photo_btn.classList.add("disabled");
+	download_photo_btn.setAttribute('value', '');
 
 	// Resume playback of stream.
 	video.play();

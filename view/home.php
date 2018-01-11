@@ -15,8 +15,8 @@
 					<img id="snap"></img>
 					<p id="error-message"></p>
 					<form method="POST" action="./modeles/upload.php" enctype="mulitport/form-data" class="controls">
-						<button href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></button>
-						<button href="#" id="take-photo" type="hidden" title="Take Photo"><i class="material-icons">camera_alt</i></button>
+						<button id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></button>
+						<button id="take-photo" type="hidden" title="Take Photo"><i class="material-icons">camera_alt</i></button>
 						<button id="download-photo" type="submit" name="myimage" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></button>
 					</form>
 					<canvas></canvas>
