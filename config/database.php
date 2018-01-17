@@ -20,7 +20,8 @@
 			`id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`login` VARCHAR(32) NOT NULL,
 			`password` VARCHAR(128) NOT NULL,
-			`mail` VARCHAR(64) NOT NULL
+			`mail` VARCHAR(64) NOT NULL,
+			`token` VARCHAR(64) DEFAULT NULL
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
 

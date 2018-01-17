@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<div class='box'>
-			<form action='./modeles/auth/auth.php' method='POST'>
+			<form action='./modeles/auth/auth.php' method='POST' class='log_form'>
 			<h2>Already have any account ?</h2>
 				<label>Login:</label>
 				<input class='input' type='text' name='login' value='' required>
@@ -14,7 +14,7 @@
 				<button class='button' type='submit' name='submit' value='OK' required>Login</button>
 			</form>
 			<hr>
-			<form action='./modeles/create/create.php' method='POST'>
+			<form action='./modeles/create/create.php' method='POST' class='log_form'>
 			<h2>Create a new account and join us !</h2>
 				<label>Login:</label>
 				<input class='input' type='text' name='login' value='' required>

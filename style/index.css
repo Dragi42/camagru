@@ -49,7 +49,7 @@ html{
 	justify-content: space-around;
 }
 
-.setting_form form, .box form{
+.setting_form form, .log_form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
