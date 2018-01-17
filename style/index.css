@@ -38,18 +38,28 @@ html{
 	color: #333;
 }
 
+.setting_form {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
 .box{
 	display: flex;
 	justify-content: space-around;
 }
 
-.form{
+.setting_form form, .box form{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 10 20 10 20;
+	margin: auto;
 	text-align: center;
 	width: 100%;
+}
+
+.setting_form div {
+	padding: 20px 20px 20px 20px;
 }
 
 .logo {
@@ -103,7 +113,7 @@ html{
 	text-align: center;
 }
 
-.input {
+input {
 	width: 60%;
 	margin: 0 20 10 20;
 	border: 2px solid black;
@@ -222,6 +232,12 @@ html{
 	.box{
 		flex-direction: column;
 		align-items: center;
+	}
+	.setting_form {
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		flex-direction: column;
 	}
 	.app video#camera-stream{
 		display: none;

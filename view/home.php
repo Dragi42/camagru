@@ -1,9 +1,7 @@
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta content="Display Webcam Stream" name="title">
 		<title>Camagru</title>
-		<link rel="stylesheet" type="text/css" href="../style/index.css">
 	</head>
 	<body>
 		<div class="box">

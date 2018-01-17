@@ -1,7 +1,4 @@
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../style/index.css">
-	</head>
 	<body>
 		<div id="footer">
 			<hr />

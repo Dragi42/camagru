@@ -7,11 +7,12 @@
 		if ($log && $pwd)
 		{
 			if (($db = connect_db())) {
-				$sql = "SELECT `login`, `password` from `Users`";
+				$sql = "SELECT `id`, `login`, `password` from `Users`";
 				$query = $db -> query($sql);
 				foreach ($query as $row) {
 					if ($row['login'] == $log) {
 						if ($row['password'] == hash("whirlpool", $pwd)) {
+							$_SESSION['id'] = $row['id'];
 							return (1);
 						}
 						else {

@@ -17,7 +17,7 @@
 		echo "
 					<li><a href='./?module=login&action=home' title='Home'>".$_SESSION['logged_on_user']."</a></li>
 					<li><a href='./' title='Accueil'>Accueil</a></li>
-					<li><a href='./?modules=login&action=settings' title='Settings'><i class='material-icons'>settings</i></a></li>
+					<li><a href='./?module=login&action=settings' title='Settings'><i class='material-icons'>settings</i></a></li>
 					<li><a href='./?module=auth&action=logout' title='Log out'>Log out</a></li>
 				</ul>
 			</div>

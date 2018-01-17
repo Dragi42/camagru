@@ -2,7 +2,6 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Camagru</title>
-		<link rel="stylesheet" type="text/css" href="./style/index.css">
 	</head>
 	<body>
 	<div class="box">
