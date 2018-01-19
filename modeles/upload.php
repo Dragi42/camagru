@@ -23,5 +23,5 @@ if (($db = connect_db()) && $base64 != '')
 		";
 	$db -> query($sql);
 }
-	header("location: .././?module=login&action=home");
+	header("location: .././?module=home&action=index");
 ?>
