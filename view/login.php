@@ -1,31 +1,65 @@
+<?php
+	session_start();
+?>
+
 <html>
 	<head>
-		<meta charset='utf-8'>
-		<title>Camagru - Log in</title>
+		<title>Sign up/Sign in</title>
+		<style>
+			body {	padding-top: 40px; }
+			.starter-template {	.padding-top: 40px; }
+		</style>
 	</head>
 	<body>
-		<div class='box'>
-			<form action='./modeles/auth/auth.php' method='POST' class='log_form'>
-			<h2>Already have any account ?</h2>
-				<label>Login:</label>
-				<input class='input' type='text' name='login' value='' required>
-				<label>Password:</label>
-				<input class='input' type='password' name='password' value='' required><br />
-				<button class='button' type='submit' name='submit' value='OK' required>Login</button>
-			</form>
-			<hr>
-			<form action='./modeles/create/create.php' method='POST' class='log_form'>
-			<h2>Create a new account and join us !</h2>
-				<label>Login:</label>
-				<input class='input' type='text' name='login' value='' required>
-				<label>E-mail:</label>
-				<input class='input' type='mail' name='mail' value='' required>
-				<label>Password:</label>
-				<input class='input' type='password' name='passwd' value='' required>
-				<label>Confirm Password:</label>
-				<input class='input' type='password' name='cpasswd' value='' required><br />
-				<button class='button' type='submit' name='submit' value='OK' required>Create</button>
-			</form>
+		<div class="container">
+			<div class="starter-template">
+
+				<?php	if(array_key_exists('errors', $_SESSION)):	?>
+					<div class="alert alert-danger">
+						<?= implode('<br>', $_SESSION['errors']); ?>
+					</div>
+				<?php endif; ?>
+				<?php	if(array_key_exists('success', $_SESSION)): ?>
+					<div class="alert alert-success">
+						Le compte å bien été créé, un e-mail de confirmation vous å été envoyé.
+					</div>
+				<?php endif; ?>
+
+				<form action="modify_password.php" method="POST">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="inputlogin">Login</label>
+								<input required type="text" name="login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="inputpassword">Password</label>
+								<input required type="text" name="password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="inputmail">Mail</label>
+								<input required type="text" name="mail" class="form-control" id="inputmail" value="<?= isset($_SESSION['inputs']['mail']) ? $_SESSION['inputs']['mail'] : ''; ?>">
+							</div>
+							<button type="submit" class="btn btn-primary">Create</button>
+						</div>
+					</div>
+				</form>
+				<h2>Debug :<h2>
+				<?= var_dump($_SESSION); ?>-->
+			</div>
 		</div>
+		<script src="js/settings.js"></script>
 	</body>
 </html>
+
+<?php
+
+	unset($_SESSION['inputs']);
+	unset($_SESSION['success']);
+	unset($_SESSION['errors']);
+
+?>

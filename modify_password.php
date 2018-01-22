@@ -13,15 +13,17 @@
 		$errors['mail'] = "Veuillez renseigner une adresse e-mail valide";
 	}
 
+	session_start();
 	if(!empty($errors)) {
-		session_start();
 		$_SESSION['errors'] = $errors;
 		$_SESSION['inputs'] = $_POST;
-		header('location: /?module=settings&action=index');
+		header('location: /?module=auth&action=form');
 	}
 	else {
+		$_SESSION['success'] = 1;
 		$headers = 'FROM: dpaunovi@local.dev';
 		mail('draganpaunovic.charles@gmail.com', 'Formulaire inscription', 'Création de compte', $headers);
+		header('location: /?module=auth&action=form');
 	}
 
 ?>
