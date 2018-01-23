@@ -1,6 +1,6 @@
 <?php
 
-if (!$_SESSION['logged_on_user'])
+if (empty($_SESSION))
 	header("location: ./");
 require("./modeles/images/get_img.php");
 

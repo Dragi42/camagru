@@ -19,7 +19,7 @@
 					<li><a href='./?module=home&action=index' title='Home'>".$_SESSION['login']."</a></li>
 					<li><a href='./' title='Accueil'>Accueil</a></li>
 					<li><a href='./?module=settings&action=index' title='Settings'><i class='material-icons'>settings</i></a></li>
-					<li><a href='./?module=auth&action=logout' title='Log out'>Log out</a></li>
+					<li><a href='./?module=account&action=logout' title='Log out'>Log out</a></li>
 				</ul>
 			</div>
 		</div>
@@ -28,7 +28,7 @@
 
 	else {
 		echo "
-					<li><a href='./?module=auth&action=form'>Sign in / Sign up</a></li>
+					<li><a href='./?module=account&action=index'>Sign in / Sign up</a></li>
 				</ul>
 			</div>
 		</div>
