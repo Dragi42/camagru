@@ -13,7 +13,7 @@
 				<?php endif; ?>
 				<?php	if(array_key_exists('success', $_SESSION)): ?>
 					<div class="alert alert-success">
-						Le Mot de passe à bien été changé, un e-mail de confirmation vous à été envoyé.
+						<?= $_SESSION['success']; ?>
 					</div>
 				<?php endif; ?>
 

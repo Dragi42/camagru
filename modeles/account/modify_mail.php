@@ -2,8 +2,8 @@
 
 	$errors = [];
 
-	if(!array_key_exists('login', $_POST) || !$_POST['login']) {
-		$errors['login'] = "Veuillez entrer un Nouveau Login.";
+	if(!array_key_exists('mail', $_POST) || !$_POST['mail']) {
+		$errors['mail'] = "Veuillez entrer une adresse Mail.";
 	}
 	if(!array_key_exists('password', $_POST) || !$_POST['password']) {
 		$errors['password'] = "Veuillez renseigner votre Mot de Passe.";
@@ -13,8 +13,8 @@
 	}
 	if (empty($errors)) {
 		$password = hash('whirlpool', $_POST['password']);
-		if($_SESSION['login'] === $_POST['login']) {
-			$errors['login'] = "Veuillez entrer un login different.";
+		if($_SESSION['mail'] === $_POST['mail']) {
+			$errors['mail'] = "Veuillez entrer une adresse mail different.";
 		}
 		else if($_SESSION['password'] != $password) {
 			$errors['password'] = "Le mot de passe entré est incorrecte.";
@@ -32,21 +32,21 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->query("SELECT `login` FROM Users WHERE login='".$_POST['login']."'");
+			$query = $db->query("SELECT `mail` FROM Users WHERE mail='".$_POST['mail']."'");
 			$exist = $query->fetch();
 			if ($exist) {
-				$errors['login'] = "Ce Login est déjà utilisé, merci d'en choisir un nouveau.";
+				$errors['mail'] = "Cette adresse e-mail est déjà utilisé, merci d'en choisir une nouvelle.";
 				$_SESSION['errors'] = $errors;
 				$_SESSION['inputs'] = $_POST;
 			}
 			else {
-				$sql = "UPDATE Users SET login='".$_POST['login']."' WHERE id=".$_SESSION['id']."";
+				$sql = "UPDATE Users SET mail='".$_POST['mail']."' WHERE id=".$_SESSION['id']."";
 				$db -> query($sql);
 				//			$headers = 'FROM: dpaunovi@local.dev';
-				$message = "Bonjour ".$_SESSION['login'].".\nOu devrais-je dire... ".$_POST['login']."";
-				mail('draganpaunovic.charles@gmail.com', 'Nouveau Login', $message, $headers);
-				$_SESSION['success'] = "Le login à bien été changé.\nVotre login sera desormais : ".$_POST['login']."";
-				$_SESSION['login'] = $_POST['login'];
+				$message = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mail'].".";
+				mail('draganpaunovic.charles@gmail.com', 'Changement d\'adresse e-mail', $message, $headers);
+				$_SESSION['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mail'].".";
+				$_SESSION['mail'] = $_POST['mail'];
 			}
 		}
 	}

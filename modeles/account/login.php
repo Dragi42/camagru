@@ -15,7 +15,7 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->prepare("SELECT `id`, `login`, `password` FROM Users WHERE `login` = ?");
+			$query = $db->prepare("SELECT `id`, `login`, `password`, `mail` FROM Users WHERE `login` = ?");
 			$query->execute([$_POST['login']]);
 			$exist = $query->fetch();
 
@@ -33,6 +33,7 @@
 					$_SESSION['id'] = $exist['id'];
 					$_SESSION['login'] = $exist['login'];
 					$_SESSION['password'] = $exist['password'];
+					$_SESSION['mail'] = $exist['mail'];
 					$_SESSION['logged'] = 1;
 				}
 			}
