@@ -35,7 +35,7 @@
 			$db -> query($sql);
 			$_SESSION['password'] = $newpassword;
 			$_SESSION['success'] = "Le changement de votre mot de passe à bien été effectué.\nNous vous avons envoyé un mail de confirmation.";
-			//			$headers = 'FROM: dpaunovi@local.dev';
+			$headers = 'FROM: dpaunovi@student.42.fr';
 			$message = "Bonjour ".$_SESSION['login'].".\nNous vous confirmons la modification de votre ancien Mot de Passe.\n\nAncien Mot de Passe : ".$_POST['password']."\nVotre nouveau Mot de Passe : ".$_POST['newpassword']."";
 			mail('draganpaunovic.charles@gmail.com', 'Modification de mot de passe', $message, $headers);
 		}

@@ -16,11 +16,11 @@
 		if($_SESSION['mail'] === $_POST['mail']) {
 			$errors['mail'] = "Veuillez entrer une adresse mail different.";
 		}
-		else if($_SESSION['password'] != $password) {
-			$errors['password'] = "Le mot de passe entré est incorrecte.";
-		}
 		else if($_POST['password'] != $_POST['cpassword']) {
 			$errors['password'] = "La confirmation de mot de passe ne correspond pas.";
+		}
+		else if($_SESSION['password'] != $password) {
+			$errors['password'] = "Le mot de passe entré est incorrecte.";
 		}
 	}
 
@@ -42,7 +42,7 @@
 			else {
 				$sql = "UPDATE Users SET mail='".$_POST['mail']."' WHERE id=".$_SESSION['id']."";
 				$db -> query($sql);
-				//			$headers = 'FROM: dpaunovi@local.dev';
+				$headers = 'FROM: dpaunovi@student.42.fr';
 				$message = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mail'].".";
 				mail('draganpaunovic.charles@gmail.com', 'Changement d\'adresse e-mail', $message, $headers);
 				$_SESSION['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mail'].".";

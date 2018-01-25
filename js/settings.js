@@ -28,4 +28,18 @@ var getHttpRequest = function () {
 	return httpRequest
 }
 
+var form = document.querySelector('#loginform')
+form.addEventListener('submit', function (e) {
+	e.preventDefault()
 
+	var data = new FormData(form)
+	var xhr = getHttpRequest();
+	xhr.onreadystatechange = function () {
+		if (xhr.readystate === 4) {
+			
+		}
+	}
+	xhr.open('POST', form.getAttribute('action'), true)
+	xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest')
+	xhr.send(data)
+})
