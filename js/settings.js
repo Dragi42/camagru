@@ -35,7 +35,7 @@ form.addEventListener('submit', function (e) {
 	var data = new FormData(form)
 	var xhr = getHttpRequest();
 	xhr.onreadystatechange = function () {
-		if (xhr.readystate === 4) {
+		if (xhr.readyState === 4) {
 			
 		}
 	}

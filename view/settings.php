@@ -98,6 +98,6 @@
 				<?= var_dump($_SESSION); ?>
 			</div>-->
 		</div>
+		<script src="./js/settings.js"></script>
 	</body>
-	<script src="./js/settings.js"></script>"
 </html>

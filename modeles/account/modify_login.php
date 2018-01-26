@@ -15,7 +15,7 @@
 	if(!array_key_exists('cpassword', $_POST) || !$_POST['cpassword']) {
 		$errors['cpassword'] = "Veuillez confirmer votre Mot de Passe.";
 	}
-	if (empty($errors)) {
+/*	if (empty($errors)) {
 		$password = hash('whirlpool', $_POST['password']);
 		if($_SESSION['login'] === $_POST['login']) {
 			$errors['login'] = "Veuillez entrer un login different.";
@@ -26,16 +26,15 @@
 		else if($_SESSION['password'] != $password) {
 			$errors['password'] = "Le mot de passe entré est incorrecte.";
 		}
-	}
+	}*/
 
 
 	if(!empty($errors)) {
 		if (isAjax()) {
-			echo json_encode($errors);
-			header('Content-Type: application/json');
-			var_dump(http_response_code());
 			http_response_code(400);
-			var_dump(http_response_code());
+			header('Content-Type: application/json');
+			echo json_encode($errors);
+
 			die();
 		}
 		$_SESSION['errors'] = $errors;
@@ -61,6 +60,6 @@
 			}
 		}
 	}
-	header('location: ../../?module=settings&action=index');
+//	header('location: ../../?module=settings&action=index');
 
 ?>

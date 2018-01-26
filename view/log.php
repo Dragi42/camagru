@@ -28,19 +28,19 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="inputlogin">Login</label>
-								<input required type="text" name="login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
+								<input type="text" name="login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="inputpassword">Password</label>
-								<input required type="password" name="password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
+								<input type="password" name="password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="inputmail">Mail</label>
-								<input required type="email" name="mail" class="form-control" id="inputmail" value="<?= isset($_SESSION['inputs']['mail']) ? $_SESSION['inputs']['mail'] : ''; ?>">
+								<input type="email" name="mail" class="form-control" id="inputmail" value="<?= isset($_SESSION['inputs']['mail']) ? $_SESSION['inputs']['mail'] : ''; ?>">
 							</div>
 							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
@@ -53,13 +53,13 @@
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="inputlogin">Login</label>
-								<input required type="text" name="login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
+								<input type="text" name="login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="inputpassword">Password</label>
-								<input required type="password" name="password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
+								<input type="password" name="password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
 							</div>
 							<button type="submit" class="btn btn-primary">Log in</button>
 						</div>
