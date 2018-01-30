@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label for="inputlogin">New Login</label>
+								<label for="inputlogin" class="control-label">New Login</label>
 								<input type="text" name="login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
 							</div>
 						</div>
@@ -94,9 +94,9 @@
 					</div>
 				</form>
 
+			</div>-->
 				<h2>Debug :<h2>
 				<?= var_dump($_SESSION); ?>
-			</div>-->
 		</div>
 		<script src="./js/settings.js"></script>
 	</body>
