@@ -35,8 +35,21 @@ form.addEventListener('submit', function (e) {
 	var data = new FormData(form)
 	var xhr = getHttpRequest();
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState === 4) {
-			
+/*		if (xhr.readyState === 4) {
+			if (xhr.status != 200) {
+				var errors = JSON.parse(xhr.responseText)
+				var errorsKey = Object.keys(errors)
+				for (var i = 0; i < errorsKey.length; i++) {
+					var key = errorsKey[i]
+					var error = errors[key]
+					var input = document.querySelector['[name=' + key + ']']
+					var span = document.createElement('span')
+					span.className = 'help-block'
+					span.innerHTML = error 
+					input.parentNode.classList.add('has-error')
+					input.parentNode.appendChild(span) 
+				}
+			}*/
 		}
 	}
 	xhr.open('POST', form.getAttribute('action'), true)
