@@ -128,7 +128,7 @@ input {
 	position: relative;
 }
 
-.app #start-camera{
+.app #start-camera, .app #start-upload{
 	display: none;
 	border-radius: 3px;
 	max-width: 400px;
@@ -257,7 +257,7 @@ input {
 }
 
 @media(max-width: 1000px){
-	.app #start-camera.visible{
+	.app #start-camera.visible, .app #start-upload.visible{
 		display: block;
 	}
 

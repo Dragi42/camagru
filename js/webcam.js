@@ -1,6 +1,7 @@
 var	video = document.querySelector("#camera-stream"),
 	image = document.querySelector("#snap"),
 	start_camera = document.querySelector("#start-camera"),
+	start_upload = document.querySelector("#start-upload"),
 	controls = document.querySelector(".controls"),
 	take_photo_btn = document.querySelector('#take-photo'),
 	delete_photo_btn = document.querySelector('#delete-photo'),
@@ -18,10 +19,10 @@ else {
 			{video: true},
 			function(stream) {
 				video.src = window.URL.createObjectURL(stream);
-				video.play();
-				video.onplay = function() {
-					showVideo();
-				};
+//				video.play();
+///				video.onplay = function() {
+//					showVideo();
+//				};
 			},
 			function(err) {
 				displayErrorMessage("There was an error with accessing the camera stream: " + err.name, err);
@@ -83,6 +84,14 @@ function	showVideo() {
 	controls.classList.add("visible");
 }
 
+function	closeVideo() {
+	// Display the video stream and the controls.
+
+	hideUI();
+	video.classList.remove("visible");
+	controls.classList.remove("visible");
+}
+
 function takeSnapshot() {
 	// Here we're using a trick that involves a hidden canvas element.
 
@@ -124,6 +133,7 @@ function hideUI(){
 
 	controls.classList.remove("visible");
 	start_camera.classList.remove("visible");
+	start_upload.classList.remove("visible");
 	video.classList.remove("visible");
 	snap.classList.remove("visible");
 	error_message.classList.remove("visible");
