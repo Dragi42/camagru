@@ -8,7 +8,7 @@
 
 	function get_user_img() {
 		$db = connect_db();
-		$images = $db->query("SELECT `path_img`, `like`, `comment` FROM `Pictures` where login='".$_SESSION['logged_on_user']."' ORDER by `id` desc");
+		$images = $db->query("SELECT `path_img`, `like`, `comment` FROM `Pictures` where login='".$_SESSION['login']."' ORDER by `id` desc");
 		return ($images);
 	}
 

@@ -1,8 +1,10 @@
 <?php
 
+	session_start();
+	require '../../config/init.php';
 	if ($_SESSION['id'])
-		header("location: ./");
+		header("location: ../../");
 
-	require './modeles/account/create.php';
+	require '../../modeles/account/create.php';
 
 ?>

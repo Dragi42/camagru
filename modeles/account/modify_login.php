@@ -2,31 +2,29 @@
 
 	function isAjax() {
 		return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-}
-session_start();
-include '../../config/init.php';
+	}
 
 	$errors = [];
 
-	if(!array_key_exists('login', $_POST) || !$_POST['login']) {
-		$errors['login'] = "Le champ Login n'est pas rempli correctement.";
+	if(!array_key_exists('loginform-login', $_POST) || !$_POST['loginform-login']) {
+		$errors['loginform-login'] = "Le champ Login n'est pas rempli correctement.";
 	}
-	if(!array_key_exists('password', $_POST) || !$_POST['password']) {
-		$errors['password'] = "Veuillez renseigner votre Mot de Passe.";
+	if(!array_key_exists('loginform-password', $_POST) || !$_POST['loginform-password']) {
+		$errors['loginform-password'] = "Veuillez renseigner votre Mot de Passe.";
 	}
-	if(!array_key_exists('cpassword', $_POST) || !$_POST['cpassword']) {
-		$errors['cpassword'] = "Veuillez confirmer votre Mot de Passe.";
+	if(!array_key_exists('loginform-cpassword', $_POST) || !$_POST['loginform-cpassword']) {
+		$errors['loginform-cpassword'] = "Veuillez confirmer votre Mot de Passe.";
 	}
 	if (empty($errors)) {
-		$password = hash('whirlpool', $_POST['password']);
-		if($_SESSION['login'] === $_POST['login']) {
-			$errors['login'] = "Veuillez entrer un login different.";
+		$password = hash('whirlpool', $_POST['loginform-password']);
+		if($_SESSION['login'] === $_POST['loginform-login']) {
+			$errors['loginform-login'] = "Veuillez entrer un login different.";
 		}
-		else if($_POST['password'] != $_POST['cpassword']) {
-			$errors['cpassword'] = "La confirmation de mot de passe ne correspond pas.";
+		else if($_POST['loginform-password'] != $_POST['loginform-cpassword']) {
+			$errors['loginform-cpassword'] = "La confirmation de mot de passe ne correspond pas.";
 		}
 		else if($_SESSION['password'] != $password) {
-			$errors['password'] = "Le mot de passe entré est incorrecte.";
+			$errors['loginform-password'] = "Le mot de passe entré est incorrecte.";
 		}
 	}
 	if(!empty($errors)) {
@@ -34,16 +32,16 @@ include '../../config/init.php';
 			header('Content-Type: application/json', true, 400);
 			echo json_encode($errors);
 			die();
-	}
+		}
 		$_SESSION['errors'] = $errors;
 		$_SESSION['inputs'] = $_POST;
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->query("SELECT `login` FROM Users WHERE login='".$_POST['login']."'");
+			$query = $db->query("SELECT `login` FROM Users WHERE login='".$_POST['loginform-login']."'");
 			$exist = $query->fetch();
 			if ($exist) {
-				$errors['login'] = "Ce Login est déjà utilisé, merci d'en choisir un nouveau.";
+				$errors['loginform-login'] = "Ce Login est déjà utilisé, merci d'en choisir un nouveau.";
 				if (isAjax()) {
 					header('Content-Type: application/json', true, 400);
 					echo json_encode($errors);
@@ -53,13 +51,13 @@ include '../../config/init.php';
 				$_SESSION['inputs'] = $_POST;
 			}
 			else {
-				$sql = "UPDATE Users SET login='".$_POST['login']."' WHERE id=".$_SESSION['id']."";
+				$sql = "UPDATE Users SET login='".$_POST['loginform-login']."' WHERE id=".$_SESSION['id']."";
 				$db -> query($sql);
 				$headers = 'FROM: dpaunovi@student.42.fr';
-				$message = "Bonjour ".$_SESSION['login'].".\nOu devrais-je dire... ".$_POST['login']."";
+				$message = "Bonjour ".$_SESSION['login'].".\nOu devrais-je dire... ".$_POST['loginform-login']."";
 				mail('draganpaunovic.charles@gmail.com', 'Nouveau Login', $message, $headers);
-				$success['success'] = "Le login à bien été changé.\nVotre login sera desormais : ".$_POST['login']."";
-				$_SESSION['login'] = $_POST['login'];
+				$success['success'] = "Le login à bien été changé.\nVotre login sera desormais : ".$_POST['loginform-login']."";
+				$_SESSION['login'] = $_POST['loginform-login'];
 				if (isAjax()) {
 					header('Content-Type: application/json');
 					echo json_encode($success);
@@ -67,11 +65,6 @@ include '../../config/init.php';
 				}
 				$_SESSION['success'] = $success['success'];
 			}
-		}
-		if (isAjax()) {
-			header('Content-Type: application/json');
-			echo json_encode(['success' => "Bravo !"]);
-			die();
 		}
 	}
 	header('location: ../../?module=settings&action=index');

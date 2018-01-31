@@ -23,7 +23,7 @@ body {
 	height: 70px;
 }
 
-/*h1{
+h1{
 	font: normal 32px/1.5 'Open Sans', sans-serif;
 	color: #2c3e50;
 	margin: 50px 0;
@@ -75,14 +75,14 @@ html{
 	color: black;
 }
 
-.navbar ul {
+.nav ul {
 	list-style-type: none;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.navbar li a {
+.nav li a {
 	display: block;
 	color: black;
 	text-align: center;
@@ -90,7 +90,7 @@ html{
 	text-decoration: none;
 }
 
-.navbar li a:hover {
+.nav li a:hover {
 	padding-bottom: 16px;
 	box-shadow: 0px 2px red;
 }
@@ -116,13 +116,13 @@ html{
 	margin: 10 20 10 20;
 	text-align: center;
 }
-
+/*
 input {
 	width: 60%;
 	margin: 0 20 10 20;
 	border: 2px solid black;
 	border-radius: 5px;
-}
+}*/
 
 .app {
 	position: relative;
@@ -288,4 +288,4 @@ input {
 	.app .controls #take-photo i{
 		font-size: 18px;
 	}
-}*/
+}

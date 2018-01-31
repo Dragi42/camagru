@@ -10,7 +10,7 @@
 			<div class='logo'>
 				<a href='.'><h2>Camagru</h2></a>
 			</div>
-			<div class='navbar'>
+			<div class='nav'>
 				<ul class='list'>
 <?php
 

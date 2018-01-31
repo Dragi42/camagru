@@ -4,6 +4,16 @@ session_start();
 
 // Initialisation
 include 'config/init.php';
+if ($_SESSION['id']) {
+	if ($db = connect_db()) {
+		$query = $db->query("SELECT `id` FROM Users WHERE id='".$_SESSION['id']."'");
+		$exist = $query->fetch();
+		if (!$exist) {
+			session_unset($_SESSION);
+			$_SESSION = [];
+		}
+	}
+}
 
 // Debut de la tamporisation de sortie
 ob_start();
