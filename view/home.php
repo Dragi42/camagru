@@ -40,6 +40,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="webcam.js"></script>
+		<script src="./js/webcam.js"></script>
 	</body>
 </html>
