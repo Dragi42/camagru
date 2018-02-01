@@ -2,7 +2,7 @@
 session_start();
 include("../../config/init.php");
 
-$login = $_SESSION['login'];
+$user_id = $_SESSION['id'];
 $type = $_FILES['img']['type'];
 
 if ($type == 'image/jpeg' || $type == 'image/png') {
@@ -17,10 +17,7 @@ if ($type == 'image/jpeg' || $type == 'image/png') {
 
 if (($db = connect_db()) && $base64 != '')
 {
-	$sql = "
-		INSERT INTO `Pictures` (`path_img`, `login`) VALUES
-			('$base64', '$login');
-		";
+	$sql = "INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES ('".$base64."', '".$_SESSION['id']."')";
 	$db -> query($sql);
 }
 	header("location: ../../?module=home&action=index");

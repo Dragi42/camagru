@@ -84,14 +84,6 @@ function	showVideo() {
 	controls.classList.add("visible");
 }
 
-function	closeVideo() {
-	// Display the video stream and the controls.
-
-	hideUI();
-	video.classList.remove("visible");
-	controls.classList.remove("visible");
-}
-
 function takeSnapshot() {
 	// Here we're using a trick that involves a hidden canvas element.
 
@@ -134,6 +126,8 @@ function hideUI(){
 	controls.classList.remove("visible");
 	start_camera.classList.remove("visible");
 	start_upload.classList.remove("visible");
+	start_camera.style.display = "none";
+	start_upload.style.display = "none";
 	video.classList.remove("visible");
 	snap.classList.remove("visible");
 	error_message.classList.remove("visible");

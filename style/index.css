@@ -129,7 +129,7 @@ input {
 }
 
 .app #start-camera, .app #start-upload{
-	display: none;
+	display: block;
 	border-radius: 3px;
 	max-width: 400px;
 	color: #fff;

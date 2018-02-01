@@ -30,13 +30,13 @@
 				<h2>History of Pictures</h2>
 				<div class="gallery">
 				<?php foreach ($images as $img) : ?>
-					<div style='border: 2px solid black; margin: 10px; display: inline-block;'>
-						<img src='<?= $img['path_img'] ?>' alt='' style='object-fit: cover;' width='300' height='200'/>
+					<form method="POST" action="./modules/images/extend.php" id="image-form" style='border: 2px solid black; margin: 10px; display: inline-block;'>
+						<button name="path_img" value="1"><img src='<?= $img['path_img'] ?>' alt='' style='object-fit: cover;' width='300' height='200'/></button>
 						<div style='padding: 10px; display: flex;'>
-							<img src='./icons/like.ico' alt='likes' width='30' height='30'/><?= $img['like'] ?>
-							<img src='./icons/comment.ico' alt='cemment' width='30' height='30'/><?= $img['comment'] ?>
+							<button name="picture_id" value="<?= $img['id'] ?>" formaction="./modules/images/like.php"><i class='material-icons'>favorite_border</i><?= $img['like'] ?></button>
+							<button><i class="material-icons">chat</i><?= $img['comment'] ?></button>
 						</div>
-					</div>
+					</form>
 				<?php endforeach; ?>
 				</div>
 			</div>
