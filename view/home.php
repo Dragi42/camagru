@@ -35,5 +35,6 @@
 			</div>
 		</div>
 		<script src="./js/webcam.js"></script>
+		<script src="./js/like.js"></script>
 	</body>
 </html>

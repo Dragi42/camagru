@@ -16,8 +16,8 @@
 		foreach ($images as $img) {
 			echo "<div style='border: 2px solid black; margin: 10px; display: inline-block;'>
 					<button name='path_img' value='1'><img src='".$img['path_img']."' alt='' style='object-fit: cover;' width='300' height='200'/></button>
-					<form method='POST' id='formform' style='padding: 10px; display: flex;'>
-						<button id='like-button' name='picture_id' value='".$img['id']."' formaction='./modules/images/like.php'><i class='material-icons'>favorite_border</i>".$img['like']."</button>
+					<form method='POST' style='padding: 10px; display: flex;'>
+						<button id='like-button' name='picture_id' value='".$img['id']."' formaction='./modules/images/like.php'><i class='material-icons'>favorite_border</i><p>".$img['like']."</p></button>
 						<button><i class='material-icons'>chat</i>".$img['comment']."</button>
 					</form>
 				</div>";

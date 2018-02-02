@@ -38,13 +38,13 @@
 						$db->query($req);
 						$req = $db->prepare("UPDATE Pictures SET `like` = `like` - 1 WHERE `id` = ?");
 						$req->execute([$_POST['picture_id']]);
-						$success['success'] = "Votre like à bien été retiré.";
+						$success['dislike'] = "Votre like à bien été retiré.";
 						if (isAjax()) {
 							header('Content-Type: application/json');
 							echo json_encode($success);
 							die();
 						}
-						$_SESSION['success'] = $success['success'];
+						$_SESSION['success'] = $success['dislike'];
 						$bool = TRUE;
 					}
 				}
@@ -53,13 +53,13 @@
 					$db->query($query);
 					$req = $db->prepare("UPDATE Pictures SET `like` = `like` + 1 WHERE `id` = ?");
 					$req->execute([$_POST['picture_id']]);
-					$success['success'] = "Votre like à bien été pris en compte.";
+					$success['like'] = "Votre like à bien été pris en compte.";
 					if (isAjax()) {
 						header('Content-Type: application/json');
 						echo json_encode($success);
 						die();
 					}
-					$_SESSION['success'] = $success['success'];
+					$_SESSION['success'] = $success['like'];
 				}
 			}
 		}
