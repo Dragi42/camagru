@@ -5,7 +5,5 @@
 
 	require './view/settings.php';
 	unset($_SESSION['inputs']);
-	unset($_SESSION['success']);
-	unset($_SESSION['errors']);
 
 ?>

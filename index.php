@@ -38,7 +38,7 @@ if (!empty($_GET['module'])) {
 	// Sinon, on affiche la page d'accueil
 	else {
 		require 'modeles/images/get_img.php';
-		$images = get_all_img();
+//	$images = get_all_img();
 		require 'view/index.php';
 	}
 
@@ -47,7 +47,6 @@ if (!empty($_GET['module'])) {
 
 else {
 	require 'modeles/images/get_img.php';
-	$images = get_all_img();
 	require 'view/index.php';
 }
 
@@ -56,6 +55,8 @@ $contenu = ob_get_clean();
 
 // Début du code HTML
 include 'view/header.php';
+unset($_SESSION['success']);
+unset($_SESSION['errors']);
 
 echo $contenu;
 

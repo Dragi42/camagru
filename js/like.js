@@ -28,32 +28,32 @@ var getHttpRequest = function () {
 	return httpRequest
 }
 
-var form = []
+/*var form = []
 
-form.push(document.querySelector('#loginform'))
-form.push(document.querySelector('#passwordform'))
-form.push(document.querySelector('#mailform'))
-
-for (var j = 0; j < form.length; j++) {
-	let p = j
-	form[j].addEventListener('submit', function (e) {
-		var button = form[p].querySelector('button[type=submit]')
-		var buttonText = button.textContent
-		button.disabled = true
-		button.textContent = 'Loading...'
-		var errorElements = form[p].querySelectorAll('.has-error')
-		console.log(errorElements)
-		for (var i = 0; i < errorElements.length; i++) {
+form.push(document.querySelector('#like-form'))
+form.push(document.querySelector('#image-form'))*/
+var button = document.querySelector('#like-button')
+console.log(button);
+//for (var j = 0; j < form.length; j++) {
+//	let p = j
+	button.addEventListener('click', function (e) {
+		console.log(button);
+		var errorElements = button.parentElement.querySelector('.has-error')
+		console.log(errorElements);
+		if (errorElements) {
+			for (var i = 0; i < errorElements.length; i++) {
 			errorElements[i].classList.remove('has-error')
 			var span = errorElements[i].querySelector('.help-block')
 			if (span) {
 				span.parentNode.removeChild(span)
 			}
 		}
+		}
 		e.preventDefault()
 
-		var data = new FormData(form[p])
-		var xhr = getHttpRequest();
+		var data = new FormData()
+		data.append('picture_id', button.value)
+		var xhr = getHttpRequest()
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
 				if (xhr.status != 200) {
@@ -62,34 +62,20 @@ for (var j = 0; j < form.length; j++) {
 					for (var i = 0; i < errorsKey.length; i++) {
 						var key = errorsKey[i]
 						var error = errors[key]
-						var input = document.querySelector('[name=' + key + ']')
 						var span = document.createElement('span')
 						span.className = 'help-block'
 						span.innerHTML = error 
-						input.parentNode.classList.add('has-error')
-						input.parentNode.appendChild(span) 
+						button.parentNode.classList.add('has-error')
+						button.parentNode.appendChild(span) 
 					}
 				}
 				else {
 					var result = JSON.parse(xhr.responseText)
 					alert(result.success)
-					if (p === 0) {
-						log = form[p].querySelector('input[name=loginform-login]').value
-						var login = document.querySelector('[name=loginhead]')
-						login.textContent = log;
-					}
-					var inputs = form[p].querySelectorAll('input')
-					for (var i = 0; i < inputs.length; i++) {
-						inputs[i].value = ''
-					}
 				}
-				button.disabled = false
-				button.textContent = buttonText
-
 			}
 		}
-		xhr.open('POST', form[p].getAttribute('action'), true)
+		xhr.open('POST', button.getAttribute('formaction'), true)
 		xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest')
 		xhr.send(data)
 	})
-}

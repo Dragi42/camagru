@@ -6,8 +6,6 @@
 	require './view/log.php';
 
 	unset($_SESSION['inputs']);
-	unset($_SESSION['success']);
 	unset($_SESSION['logged']);
-	unset($_SESSION['errors']);
 
 ?>

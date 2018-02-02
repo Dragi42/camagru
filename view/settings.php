@@ -4,18 +4,6 @@
 	</head>
 	<body>
 		<div class="container">
-
-				<?php	if(array_key_exists('errors', $_SESSION)):	?>
-					<div class="alert alert-danger">
-						<?= implode('<br>', $_SESSION['errors']); ?>
-					</div>
-				<?php endif; ?>
-				<?php	if(array_key_exists('success', $_SESSION)): ?>
-					<div class="alert alert-success">
-						<?= $_SESSION['success']; ?>
-					</div>
-				<?php endif; ?>
-
 			<div class="starter-template">
 				<h2>Change your Login</h2>
 				<form action="modules/account/modify_login.php" method="POST" id="loginform">
