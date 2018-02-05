@@ -70,7 +70,7 @@ for (var j = 0; j < form.length; j++) {
 				}
 				else {
 					if (p == 1) {
-						window.location.replace('../')
+//						window.location.replace('../')
 					}
 					else {
 						var result = JSON.parse(xhr.responseText)
@@ -83,7 +83,6 @@ for (var j = 0; j < form.length; j++) {
 				}
 				button.disabled = false
 				button.textContent = buttonText
-
 			}
 		}
 		xhr.open('POST', form[p].getAttribute('action'), true)

@@ -12,14 +12,13 @@
 			</div>
 			<div class='nav'>
 				<ul class='list'>
-
-				<?php	if ($_SESSION['id']): ?>
+				<?php if ($_SESSION['id']): ?>
 					<li><a href='./?module=home&action=index' name='loginhead' title='Home'><?= $_SESSION['login']; ?></a></li>
 					<li><a href='./' title='Accueil'>Accueil</a></li>
 					<li><a href='./?module=settings&action=index' title='Settings'><i class='material-icons'>settings</i></a></li>
 					<li><a href='./?module=account&action=logout' title='Log out'>Log out</a></li>
 				<?php endif; ?>
-				<?php	if (!$_SESSION['id']): ?>
+				<?php if (!$_SESSION['id']): ?>
 					<li><a href='./?module=account&action=index'>Sign in / Sign up</a></li>
 				<?php endif; ?>
 				</ul>
@@ -33,7 +32,7 @@
 				<?php endif; ?>
 				<?php	if(array_key_exists('success', $_SESSION)): ?>
 					<div class="alert alert-success">
-						<?= $_SESSION['success']; ?>
+						<?= implode('<br>', $_SESSION['success']); ?>
 					</div>
 				<?php endif; ?>
 		</div>

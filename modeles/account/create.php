@@ -1,9 +1,5 @@
 <?php
 
-	function isAjax() {
-		return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-	}
-
 	$errors = [];
 
 	if(!array_key_exists('cform-login', $_POST) || !$_POST['cform-login']) {
@@ -53,7 +49,6 @@
 				('" . $_POST['cform-login'] . "', '" . $_POST['cform-password'] . "', '" . $_POST['cform-mail'] . "');";
 				$db -> query($req);
 				$success['success'] = "Votre compte à bien été créé et un mail de confirmation vient de vous etre envoyé.";
-				$_SESSION['success'] = $success;
 				$headers = 'FROM: dpaunovi@local.dev';
 				mail('draganpaunovic.charles@gmail.com', 'Formulaire inscription', 'Création de compte', $headers);
 				if (isAjax()) {
@@ -61,6 +56,7 @@
 					echo json_encode($success);
 					die();
 				}
+				$_SESSION['success'] = $success;
 			}
 		}
 	}

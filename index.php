@@ -14,7 +14,6 @@ if ($_SESSION['id']) {
 		}
 	}
 }
-
 // Debut de la tamporisation de sortie
 ob_start();
 
@@ -35,10 +34,15 @@ if (!empty($_GET['module'])) {
 
 	}
 
+	else if (is_file($module.'index.php')) {
+
+		include $module.'index.php';
+
+	}
+
 	// Sinon, on affiche la page d'accueil
 	else {
 		require 'modeles/images/get_img.php';
-//	$images = get_all_img();
 		require 'view/index.php';
 	}
 
@@ -52,13 +56,14 @@ else {
 
 // Fin de la tamporisation de sortie
 $contenu = ob_get_clean();
-
 // Début du code HTML
 include 'view/header.php';
-unset($_SESSION['success']);
-unset($_SESSION['errors']);
 
 echo $contenu;
+var_dump($_SESSION);
+die();
+unset($_SESSION['errors']);
+unset($_SESSION['success']);
 
 // Fin du code HTML
 include 'view/footer.php';

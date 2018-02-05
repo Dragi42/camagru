@@ -1,9 +1,5 @@
 <?php
 
-	function isAjax() {
-		return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-	}
-
 	$errors = [];
 
 	if(!array_key_exists('lform-login', $_POST) || !$_POST['lform-login']) {
@@ -49,15 +45,16 @@
 					$_SESSION['errors'] = $errors;
 				}
 				else {
+					$success['success'] = "Connection effectuée.";
 					$_SESSION['id'] = $exist['id'];
 					$_SESSION['login'] = $exist['login'];
 					$_SESSION['password'] = $exist['password'];
 					$_SESSION['mail'] = $exist['mail'];
-					$success['success'] = "Connection effectuée.";
+					$_SESSION['success'] = $success;
 					$_SESSION['logged'] = 1;
 				}
 			}
 		}
 	}
-	header('location: ../../?module=account&action=index');
+	redirect();
 ?>

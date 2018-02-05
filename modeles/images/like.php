@@ -1,11 +1,6 @@
 <?php
 
-	function isAjax() {
-		return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-	}
-
 	$errors = [];
-
 	if(!$_POST['picture_id']) {
 		$errors['picture_id'] = "Aucune photo n'est séléctionnée.";
 		if (isAjax()) {

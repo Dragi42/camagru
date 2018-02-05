@@ -5,36 +5,24 @@
 	<body>
 		<div class="container">
 			<div class="starter-template">
-
-				<?php	if(array_key_exists('errors', $_SESSION)):	?>
-					<div class="alert alert-danger">
-						<?= implode('<br>', $_SESSION['errors']); ?>
-					</div>
-				<?php endif; ?>
-				<?php	if(array_key_exists('success', $_SESSION)): ?>
-					<div class="alert alert-success">
-						<?= implode('<br>', $_SESSION['success']); ?>
-					</div>
-				<?php endif; ?>
-
-				<form action="./modules/account/create.php" method="POST" id="sign-up">
+				<form action="./?module=account&action=create" method="POST" id="sign-up">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="inputlogin">Login</label>
-								<input type="text" name="cform-login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
+								<input type="text" name="cform-login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['cform-login']) ? $_SESSION['inputs']['cform-login'] : ''; ?>">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="inputpassword">Password</label>
-								<input type="password" name="cform-password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
+								<input type="password" name="cform-password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['cform-password']) ? $_SESSION['inputs']['cform-password'] : ''; ?>">
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="inputmail">Mail</label>
-								<input type="text" name="cform-mail" class="form-control" id="inputmail" value="<?= isset($_SESSION['inputs']['mail']) ? $_SESSION['inputs']['mail'] : ''; ?>">
+								<input type="text" name="cform-mail" class="form-control" id="inputmail" value="<?= isset($_SESSION['inputs']['cform-mail']) ? $_SESSION['inputs']['cform-mail'] : ''; ?>">
 							</div>
 							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
@@ -42,18 +30,18 @@
 				</form>
 			</div>
 			<div class="starter-template">
-				<form action="./modules/account/login.php" method="POST" id="sign-in">
+				<form action="./?module=account&action=login" method="POST" id="sign-in">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="inputlogin">Login</label>
-								<input type="text" name="lform-login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['login']) ? $_SESSION['inputs']['login'] : ''; ?>">
+								<input type="text" name="lform-login" class="form-control" id="inputlogin" value="<?= isset($_SESSION['inputs']['lform-login']) ? $_SESSION['inputs']['lform-login'] : ''; ?>">
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="inputpassword">Password</label>
-								<input type="password" name="lform-password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['password']) ? $_SESSION['inputs']['password'] : ''; ?>">
+								<input type="password" name="lform-password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['lform-password']) ? $_SESSION['inputs']['lform-password'] : ''; ?>">
 							</div>
 							<button type="submit" class="btn btn-primary">Log in</button>
 						</div>
@@ -65,5 +53,5 @@
 			</div>
 		</div>
 	</body>
-	<script src='./js/account.js'></script>
+<!--	<script src='./js/account.js'></script>-->
 </html>

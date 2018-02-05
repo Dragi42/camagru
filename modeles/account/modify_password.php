@@ -1,9 +1,5 @@
 <?php
 
-	function isAjax() {
-		return !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
-	}
-
 	$errors = [];
 
 	if(!array_key_exists('pwform-password', $_POST) || !$_POST['pwform-password']) {
@@ -55,6 +51,6 @@
 			$_SESSION['success'] = $success['success'];
 		}
 	}
-	header('location: ../../?module=settings&action=index');
+	header('location: ./?module=settings&action=index');
 
 ?>

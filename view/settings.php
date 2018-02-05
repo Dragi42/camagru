@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="starter-template">
 				<h2>Change your Login</h2>
-				<form action="modules/account/modify_login.php" method="POST" id="loginform">
+				<form action="./?module=account&action=modify_login" method="POST" id="loginform">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -32,7 +32,7 @@
 			</div>
 			<div class="starter-template">
 				<h2>Change your password</h2>
-				<form action="modules/account/modify_password.php" method="POST" id="passwordform">
+				<form action="./?module=account&action=modify_password" method="POST" id="passwordform">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -58,7 +58,7 @@
 			</div>
 			<div class="starter-template">
 				<h2>Change your E-mail address</h2>
-				<form action="modules/account/modify_mail.php" method="POST" id="mailform">
+				<form action="./?module=account&action=modify_mail" method="POST" id="mailform">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
