@@ -73,7 +73,7 @@ for (var j = 0; j < button.length; j++) {
 						var error = errors[key]
 						var span = document.createElement('span')
 						span.className = 'help-block'
-						span.innerHTML = error 
+						span.innerHTML = error
 						button[p].parentNode.classList.add('alert-danger')
 						button[p].parentNode.classList.add('has-error')
 						button[p].parentNode.appendChild(span) 
@@ -87,16 +87,18 @@ for (var j = 0; j < button.length; j++) {
 						var result = success[key]
 						if (key === 'like') {
 							button[p].querySelector('p').textContent++
+							button[p].querySelector('i').style.color = "red"
 						}
 						else {
 							button[p].querySelector('p').textContent--
+							button[p].querySelector('i').style.color = "black"
 						}
-						var span = document.createElement('span')
-						span.className = 'help-block'
-						span.innerHTML = result
-						button[p].parentNode.classList.add('has-success')
-						button[p].parentNode.classList.add('alert-success')
-						button[p].parentNode.appendChild(span) 
+//						var span = document.createElement('span')
+//						span.className = 'help-block'
+//						span.innerHTML = result
+//						button[p].parentNode.classList.add('has-success')
+//						button[p].parentNode.classList.add('alert-success')
+//						button[p].parentNode.appendChild(span) 
 //						alert(result.success)	
 					}
 				}
