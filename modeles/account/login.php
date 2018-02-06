@@ -52,9 +52,11 @@
 					$_SESSION['mail'] = $exist['mail'];
 					$_SESSION['success'] = $success;
 					$_SESSION['logged'] = 1;
+					header("location: ../../");
+					die();
 				}
 			}
 		}
 	}
-	redirect();
+	header("location: ../../?module=account&action=index");
 ?>

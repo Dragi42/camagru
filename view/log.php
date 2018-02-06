@@ -5,7 +5,7 @@
 	<body>
 		<div class="container">
 			<div class="starter-template">
-				<form action="./?module=account&action=create" method="POST" id="sign-up">
+				<form action="./modules/account/create.php" method="POST" id="sign-up">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -30,7 +30,7 @@
 				</form>
 			</div>
 			<div class="starter-template">
-				<form action="./?module=account&action=login" method="POST" id="sign-in">
+				<form action="./modules/account/login.php" method="POST" id="sign-in">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">

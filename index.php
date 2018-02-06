@@ -60,8 +60,8 @@ $contenu = ob_get_clean();
 include 'view/header.php';
 
 echo $contenu;
-var_dump($_SESSION);
-die();
+//var_dump($_SESSION);
+//die();
 unset($_SESSION['errors']);
 unset($_SESSION['success']);
 

@@ -21,14 +21,16 @@
 				$likeExist = $query->fetch();
 				if ($likeExist) {
 					$likeExist = "style='color: red;'";
+					$borderless = '';
 				} else {
 					$likeExist = '';
+					$borderless = "_border";
 				}
 			}
 			echo "<div style='border: 2px solid black; margin: 10px; display: inline-block;'>
 					<button name='path_img' value='1'><img src='".$img['path_img']."' alt='' style='object-fit: cover;' width='300' height='200'/></button>
 					<form method='POST' style='padding: 10px; display: flex;'>
-						<button id='like-button' name='picture_id' value='".$img['id']."' formaction='./?module=images&action=like'><i class='material-icons' $likeExist>favorite_border</i><p>".$img['like']."</p></button>
+						<button id='like-button' name='picture_id' value='".$img['id']."' formaction='./?module=images&action=like'><i class='material-icons' $likeExist>favorite".$borderless."</i><p>".$img['like']."</p></button>
 						<button id='comment-button' name='picture_id' value='".$img['id']."' formaction='./?module=images&action=comment'><i class='material-icons'>chat</i>".$img['comment']."</button>
 					</form>
 				</div>";
