@@ -13,5 +13,5 @@
 			</div>
 		</div>
 	</body>
-	<script src="./js/like.js"></script>
+<!--	<script src="./js/like.js"></script>-->
 </html>

@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+	require '../../config/init.php';
 	if (!$_SESSION['id']) {
 		$errors['logged'] = "vous devez etre connecté.";
 		if (isAjax()) {
@@ -8,10 +10,10 @@
 			die();
 		}
 		$_SESSION['errors'] = $errors;
-		header("location: ./");
+		header("location: ../../");
 	}
 	else {
-		require './modeles/images/like.php';
+		require '../../modeles/images/like.php';
 	}
 
 ?>

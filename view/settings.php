@@ -86,6 +86,6 @@
 				<h2>Debug :<h2>
 				<?= var_dump($_SESSION); ?>
 		</div>
-		<script src="./js/settings.js"></script>
+<!--		<script src="./js/settings.js"></script>-->
 	</body>
 </html>

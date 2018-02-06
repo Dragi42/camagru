@@ -87,10 +87,12 @@ for (var j = 0; j < button.length; j++) {
 						var result = success[key]
 						if (key === 'like') {
 							button[p].querySelector('p').textContent++
+							button[p].querySelector('i').textContent = "favorite"
 							button[p].querySelector('i').style.color = "red"
 						}
 						else {
 							button[p].querySelector('p').textContent--
+							button[p].querySelector('i').textContent = "favorite_border"
 							button[p].querySelector('i').style.color = "black"
 						}
 //						var span = document.createElement('span')
