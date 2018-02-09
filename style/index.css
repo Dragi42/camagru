@@ -5,7 +5,7 @@ body {
 	background-color: #fff;
 }
 
-#header {
+#nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -68,17 +68,17 @@ html{
 
 .logo {
 	margin-left: 10px;
-}
-
-.logo a {
 	text-decoration: none;
 	color: black;
+}
+
+.list {
+	margin-bottom: -7px;
 }
 
 .nav ul {
 	list-style-type: none;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 }
 
@@ -91,7 +91,6 @@ html{
 }
 
 .nav li a:hover {
-	padding-bottom: 16px;
 	box-shadow: 0px 2px red;
 }
 

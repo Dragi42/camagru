@@ -59,10 +59,10 @@
 					echo json_encode($success);
 					die();
 				}
-				$_SESSION['success'] = $success['success'];
+				$_SESSION['success'] = $success;
 			}
 		}
 	}
-	header('location: ./?module=settings&action=index');
+	redirect();
 
 ?>
