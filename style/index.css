@@ -103,6 +103,11 @@ html{
 	width: 100%;
 }
 
+.no-wrap {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
 .gallery {
 	display: flex;
 	flex-wrap: wrap;

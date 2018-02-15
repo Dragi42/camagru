@@ -69,8 +69,10 @@
 					$query = $db->prepare("SELECT `login` FROM `Users` WHERE `id` = ?");
 					$query->execute([$comment['user_id']]);
 					$login = $query->fetch()['login'];
-					echo	"<h3 class='login'>".$login."</h3>
-							<p class='content'>".$comment['content']."</p>";
+					echo	"<div class='comment''>
+								<h3 class='login'>".$login."</h3>
+								<p class='content'>".$comment['content']."</p>
+							</div>";
 				}
 			}
 		}
