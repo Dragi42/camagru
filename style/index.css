@@ -5,7 +5,7 @@ body {
 	background-color: #fff;
 }
 
-#nav {
+#header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -79,6 +79,7 @@ html{
 .nav ul {
 	list-style-type: none;
 	display: flex;
+	justify-content: space-around;
 	align-items: center;
 }
 

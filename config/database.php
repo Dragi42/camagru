@@ -29,11 +29,26 @@
 		CREATE TABLE IF NOT EXISTS Pictures (
 			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`path_img` LONGBLOB NOT NULL,
-			`login` VARCHAR(32) NOT NULL,
-			`describe` VARCHAR(128) DEFAULT NULL,
-			`tags` VARCHAR(32) DEFAULT NULL,
-			`comment` int(11) DEFAULT NULL,
-			`like` int(11) unsigned DEFAULT NULL
+			`user_id` int(11) unsigned NOT NULL,
+			`comment` int(11) DEFAULT '0',
+			`like` int(11) unsigned DEFAULT '0'
+		) ENGINE=InnoDB;";
+	$db -> query($sql);
+
+	$sql ="
+		CREATE TABLE IF NOT EXISTS Likes (
+			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
+			`user_id` int(11) unsigned NOT NULL,
+			`picture_id` int(11) unsigned NOT NULL
+		) ENGINE=InnoDB;";
+	$db -> query($sql);
+
+	$sql ="
+		CREATE TABLE IF NOT EXISTS Comments (
+			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
+			`user_id` int(11) unsigned NOT NULL,
+			`picture_id` int(11) unsigned NOT NULL,
+			`content` TEXT DEFAULT NULL
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
 

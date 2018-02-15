@@ -10,7 +10,7 @@
 			die();
 		}
 		$_SESSION['errors'] = $errors;
-		header("location: ../../");
+		redirect();
 	}
 	else {
 		require '../../modeles/images/like.php';
