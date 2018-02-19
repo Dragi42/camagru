@@ -52,7 +52,8 @@
 					$_SESSION['mail'] = $exist['mail'];
 					$_SESSION['success'] = $success;
 					$_SESSION['logged'] = 1;
-					header("location: ../../");
+					unset($_SESSION['lastpage']);
+					header("location: ../../?".$_SERVER['QUERY_STRING']."");
 					die();
 				}
 			}

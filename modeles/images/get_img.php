@@ -61,11 +61,18 @@
 								<button id='comment-button' name='picture_id' formaction='./?module=images&action=extend&picture_id=".$img['id']."'><i class='material-icons'>".$commentico."</i><p>".$img['comment']."</p></button>
 							</div>
 						</form>
-					<hr>";
+						<hr>";
 
-				get_com($img);
+						get_com($img);
 
-			echo "</div>
+			echo "	<div>
+						<form method='POST' action='./modules/images/comment.php?picture_id=".$img['id']."' style='padding: 10px;'>
+							<label>Votre commentaire</label>
+							<textarea name='content' value=''></textarea>
+							<button name='submit' type='submit' value='submit'>Envoyez</button>
+						</form>
+					</div>
+				</div>
 				</div>";
 		}
 	}
@@ -87,7 +94,8 @@
 					echo	"<div class='comment'>
 								<h4 class='login'>".$login."</h4>
 								<p class='content'>".$comment['content']."</p>
-							</div>";
+								<p style='float: right;'>".$comment['date']."</p>
+							</div><hr>";
 				}
 			}
 		}
