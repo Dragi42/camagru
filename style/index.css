@@ -23,6 +23,19 @@ body {
 	height: 70px;
 }
 
+.extend img {
+	width: 70%;
+	height: 1200px;
+}
+
+.comment {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.comment .content {
+}
+
 h1{
 	font: normal 32px/1.5 'Open Sans', sans-serif;
 	color: #2c3e50;
@@ -253,6 +266,9 @@ input {
 		min-width: 300px;
 		width: 100%;
 	}
+	.extend img {
+		height: 1000px;
+	}
 }
 
 @media(max-width: 1349px){
@@ -273,6 +289,9 @@ input {
 	.app .controls #take-photo i{
 		font-size: 24px;
 	}
+	.extend img {
+		height: 100px;
+	}
 }
 
 
@@ -292,5 +311,8 @@ input {
 
 	.app .controls #take-photo i{
 		font-size: 18px;
+	}
+	.extend img {
+		height: 400px;
 	}
 }

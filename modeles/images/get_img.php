@@ -52,6 +52,21 @@
 				</div>";
 		}
 		else {
+			echo "<div class='container no-wrap extend' style='border: 2px solid black;'>
+					<img src='".$img['path_img']."' alt='' style='object-fit: scale-down; background: black;'/>
+					<div class='container'>
+						<form method='POST' style='padding: 10px;'>
+							<div style='display: flex; justify-content: left;'>
+								<button id='like-button' name='picture_id' value='".$img['id']."' formaction='./modules/images/like.php'><i class='material-icons' $likeExist>".$likeico."</i><p>".$img['like']."</p></button>
+								<button id='comment-button' name='picture_id' formaction='./?module=images&action=extend&picture_id=".$img['id']."'><i class='material-icons'>".$commentico."</i><p>".$img['comment']."</p></button>
+							</div>
+						</form>
+					<hr>";
+
+				get_com($img);
+
+			echo "</div>
+				</div>";
 		}
 	}
 
@@ -69,13 +84,14 @@
 					$query = $db->prepare("SELECT `login` FROM `Users` WHERE `id` = ?");
 					$query->execute([$comment['user_id']]);
 					$login = $query->fetch()['login'];
-					echo	"<div class='comment''>
-								<h3 class='login'>".$login."</h3>
+					echo	"<div class='comment'>
+								<h4 class='login'>".$login."</h4>
 								<p class='content'>".$comment['content']."</p>
 							</div>";
 				}
 			}
 		}
 	}
+
 
 ?>
