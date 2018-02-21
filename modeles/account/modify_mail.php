@@ -34,7 +34,8 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->query("SELECT `mail` FROM Users WHERE mail='".$_POST['mailform-mail']."'");
+			$query = $db->prepare("SELECT `mail` FROM Users WHERE mail = ?");
+			$query->execute([$_POST['mailform-mail']]);
 			$exist = $query->fetch();
 			if ($exist) {
 				$errors['mailform-mail'] = "Cette adresse e-mail est déjà utilisé, merci d'en choisir une nouvelle.";
@@ -47,12 +48,12 @@
 				$_SESSION['inputs'] = $_POST;
 			}
 			else {
-				$sql = "UPDATE Users SET mail='".$_POST['mailform-mail']."' WHERE id=".$_SESSION['id']."";
-				$db -> query($sql);
+				$query = $db->prepare("UPDATE Users SET mail = ? WHERE id = ?");
+				$query->execute([$_POST['mailform-mail'], $_SESSION['id']]);
 				$headers = 'FROM: dpaunovi@student.42.fr';
 				$message = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
 				mail('draganpaunovic.charles@gmail.com', 'Changement d\'adresse e-mail', $message, $headers);
-				$succes['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
+				$success['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
 				$_SESSION['mail'] = $_POST['mailform-mail'];
 				if (isAjax()) {
 					header('Content-Type: application/json');

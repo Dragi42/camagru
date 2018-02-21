@@ -34,7 +34,8 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->query("SELECT `login` FROM Users WHERE login='".$_POST['loginform-login']."'");
+			$query = $db->prepare("SELECT `login` FROM Users WHERE login = ?");
+			$query->execute([$_POST['loginform-login']]);
 			$exist = $query->fetch();
 			if ($exist) {
 				$errors['loginform-login'] = "Ce Login est déjà utilisé, merci d'en choisir un nouveau.";
@@ -47,8 +48,8 @@
 				$_SESSION['inputs'] = $_POST;
 			}
 			else {
-				$sql = "UPDATE Users SET login='".$_POST['loginform-login']."' WHERE id=".$_SESSION['id']."";
-				$db -> query($sql);
+				$query = $db->prepare("UPDATE Users SET login = ? WHERE id = ?");
+				$query->execute([$_POST['loginform-login'], $_SESSION['id']]);
 				$headers = 'FROM: dpaunovi@student.42.fr';
 				$message = "Bonjour ".$_SESSION['login'].".\nOu devrais-je dire... ".$_POST['loginform-login']."";
 				mail('draganpaunovic.charles@gmail.com', 'Nouveau Login', $message, $headers);

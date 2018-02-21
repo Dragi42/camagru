@@ -36,8 +36,8 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$sql = "UPDATE Users SET password='".$newpassword."' WHERE id=".$_SESSION['id']."";
-			$db -> query($sql);
+			$query = $db->prepare("UPDATE Users SET password = ? WHERE id = ?");
+			$query->execute([$newpassword, $_SESSION['id']]);
 			$headers = 'FROM: dpaunovi@student.42.fr';
 			$message = "Bonjour ".$_SESSION['pwform-login'].".\nNous vous confirmons la modification de votre ancien Mot de Passe.\n\nAncien Mot de Passe : ".$_POST['pwform-password']."\nVotre nouveau Mot de Passe : ".$_POST['pwform-newpassword']."";
 			mail('draganpaunovic.charles@gmail.com', 'Modification de mot de passe', $message, $headers);

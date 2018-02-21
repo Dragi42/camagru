@@ -29,10 +29,10 @@
 				$exist = $query->fetchAll();
 				for ($i = 0; $i < count($exist); $i++) {
 					if ($exist[$i][0] === $_SESSION['id']) {
-						$req = "DELETE FROM `Likes` WHERE `picture_id`= '".$_POST['picture_id']."' AND `user_id` = '".$_SESSION['id']."'";
-						$db->query($req);
-						$req = $db->prepare("UPDATE Pictures SET `like` = `like` - 1 WHERE `id` = ?");
-						$req->execute([$_POST['picture_id']]);
+						$query = $db->prepare("DELETE FROM `Likes` WHERE `picture_id` = ? AND `user_id` = ?");
+						$query->execute([$_POST['picture_id'], $_SESSION['id']]);
+						$query = $db->prepare("UPDATE Pictures SET `like` = `like` - 1 WHERE `id` = ?");
+						$query->execute([$_POST['picture_id']]);
 						$success['dislike'] = "Votre like à bien été retiré.";
 						if (isAjax()) {
 							header('Content-Type: application/json');
@@ -44,10 +44,10 @@
 					}
 				}
 				if (!$bool) {
-					$query = "INSERT INTO `Likes` (`picture_id`,`user_id`) VALUES ('".$_POST['picture_id']."', '".$_SESSION['id']."')";
-					$db->query($query);
-					$req = $db->prepare("UPDATE Pictures SET `like` = `like` + 1 WHERE `id` = ?");
-					$req->execute([$_POST['picture_id']]);
+					$query = $db->prepare("INSERT INTO `Likes` (`picture_id`,`user_id`) VALUES (?, ?)");
+					$query->execute([$_POST['picture_id'], $_SESSION['id']]);
+					$query = $db->prepare("UPDATE Pictures SET `like` = `like` + 1 WHERE `id` = ?");
+					$query->execute([$_POST['picture_id']]);
 					$success['like'] = "Votre like à bien été pris en compte.";
 					if (isAjax()) {
 						header('Content-Type: application/json');
