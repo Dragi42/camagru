@@ -17,7 +17,7 @@
 	
 	$sql ="
 		CREATE TABLE IF NOT EXISTS Users (
-			`id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`login` VARCHAR(32) NOT NULL,
 			`password` VARCHAR(128) NOT NULL,
 			`mail` VARCHAR(64) NOT NULL,
@@ -30,7 +30,7 @@
 			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`path_img` LONGBLOB NOT NULL,
 			`user_id` int(11) unsigned NOT NULL,
-			`comment` int(11) DEFAULT '0',
+			`comment` int(11) unsigned DEFAULT '0',
 			`like` int(11) unsigned DEFAULT '0'
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
@@ -48,7 +48,8 @@
 			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`user_id` int(11) unsigned NOT NULL,
 			`picture_id` int(11) unsigned NOT NULL,
-			`content` TEXT DEFAULT NULL
+			`date` DATETIME DEFAULT 'CURRENT_TIMESTAMP',
+			`content` TEXT DEFAULT NOT NULL
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
 
@@ -59,7 +60,7 @@
 
 	$sql ="
 		INSERT INTO `Users` (`login`, `password`, `mail`) VALUES
-			('dpaunovi', 'root', 'dpaunovi@student.42.fr');";
+			('dpaunovi', '".hash('whirlpool', 'root')."', 'dpaunovi@student.42.fr');";
 	$db -> query($sql);
 #	$req = $db -> query('SELECT * FROM');
 
