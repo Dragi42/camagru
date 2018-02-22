@@ -5,6 +5,20 @@
 	if(!array_key_exists('loginform-login', $_POST) || !$_POST['loginform-login']) {
 		$errors['loginform-login'] = "Le champ Login n'est pas rempli correctement.";
 	}
+	else {
+		if(strlen($_POST['loginform-login']) < 8 || strlen($_POST['loginform-login']) > 32)
+			$errors['loginform-login'] = "Votre login doit contenir entre 8 et 16 caractère.";
+		else {
+			foreach (str_split($_POST['loginform-login']) as $row) {
+				if (ctype_alpha($row) && !$text)
+					$text = 1;
+				else if (!ctype_alpha($row) && !ctype_digit($row))
+					$errors['loginform-login'] = "Votre login ne peut pas contenir de caractère spéciaux.";
+			}
+			if (!$text)
+				$errors['loginform-login1'] = "Votre Login doit contenir au moins une lettre.";
+		}
+	}
 	if(!array_key_exists('loginform-password', $_POST) || !$_POST['loginform-password']) {
 		$errors['loginform-password'] = "Veuillez renseigner votre Mot de Passe.";
 	}

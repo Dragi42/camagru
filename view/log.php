@@ -24,8 +24,8 @@
 								<label for="inputmail">Mail</label>
 								<input type="text" name="cform-mail" class="form-control" id="inputmail" value="<?= isset($_SESSION['inputs']['cform-mail']) ? $_SESSION['inputs']['cform-mail'] : ''; ?>">
 							</div>
-							<button type="submit" class="btn btn-primary">Create</button>
 						</div>
+						<button type="submit" class="btn btn-primary">Create</button>
 					</div>
 				</form>
 			</div>
@@ -43,10 +43,10 @@
 								<label for="inputpassword">Password</label>
 								<input type="password" name="lform-password" class="form-control" id="inputpassword" value="<?= isset($_SESSION['inputs']['lform-password']) ? $_SESSION['inputs']['lform-password'] : ''; ?>">
 							</div>
-							<button type="submit" class="btn btn-primary">Log in</button>
 						</div>
-						</div>
+						<button type="submit" class="btn btn-primary">Log in</button>
 					</div>
+					<a href='./?module=account&action=forgotpw'>Forgotten password ?</a>
 				</form>
 				<h2>Debug :<h2>
 				<?= var_dump($_SESSION); ?>
