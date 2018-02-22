@@ -21,7 +21,9 @@
 			`login` VARCHAR(16) NOT NULL,
 			`password` VARCHAR(128) NOT NULL,
 			`mail` VARCHAR(64) NOT NULL,
-			`token` VARCHAR(64) DEFAULT NULL
+			`notification` TINYINT(1) DEFAULT '1',
+			`tstamp` INTEGER UNSIGNED NOT NULL,
+			`token` VARCHAR(40) NOT NULL
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
 

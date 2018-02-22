@@ -59,7 +59,6 @@
 			$query = $db->prepare("SELECT `login`, `mail` FROM Users WHERE `login` = ? OR `mail` = ?;");
 			$query->execute([$_POST['cform-login'], $_POST['cform-mail']]);
 			$exist = $query->fetch();
-
 			if($exist) {
 				if ($exist['login'] == $_POST['cform-login']) {
 					$errors['cform-login'] = "Le login existe déjà, veuillez en choisir un nouveau";
@@ -76,12 +75,16 @@
 				$_SESSION['inputs'] = $_POST;
 			}
 			else {
+				$token = sha1(uniqid($_POST['cform-login'], true));
 				$_POST['cform-password'] = hash('whirlpool', $_POST['cform-password']);
-				$query = $db->prepare("INSERT INTO `Users` (`login`, `password`, `mail`) VALUES (?, ?, ?)");
-				$query->execute([$_POST['cform-login'], $_POST['cform-password'], $_POST['cform-mail']]);
-				$success['success'] = "Votre compte à bien été créé et un mail de confirmation vient de vous etre envoyé.";
+				$query = $db->prepare("INSERT INTO `Users` (`login`, `password`, `mail`, `token`, tstamp) VALUES (?, ?, ?, ?, ?)");
+				$query->execute([$_POST['cform-login'], $_POST['cform-password'], $_POST['cform-mail'], $token, $_SERVER["REQUEST_TIME"]]);
+				$success['success'] = "Un mail de confirmation vient de vous etre envoyé pour finalisé la création de votre compte.";
 				$headers = 'FROM: dpaunovi@local.dev';
-				mail($_POST['cform-mail'], 'Formulaire inscription', 'Création de compte', $headers);
+				$url = $_SERVER['HTTP_ORIGIN'].'/modules/account/activate.php?token='.$token;
+				$message = 'Thank you for signing up at our site.
+					Please go to '.$url.' to activate your account.';
+				mail($_POST['cform-mail'], 'Activate your account', $message, $headers);
 				if (isAjax()) {
 					header('Content-Type: application/json');
 					echo json_encode($success);
