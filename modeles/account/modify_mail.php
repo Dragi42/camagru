@@ -50,11 +50,12 @@
 			else {
 				$query = $db->prepare("UPDATE Users SET mail = ? WHERE id = ?");
 				$query->execute([$_POST['mailform-mail'], $_SESSION['id']]);
-				$headers = 'FROM: dpaunovi@student.42.fr';
+				$headers = 'FROM: dpaunovi@local.dev';
 				$message = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
-				mail('draganpaunovic.charles@gmail.com', 'Changement d\'adresse e-mail', $message, $headers);
-				$success['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
+				mail($_POST['mailform-mail'], 'Changement d\'adresse e-mail', $message, $headers);
+				mail($_SESSION['mail'], 'Changement d\'adresse e-mail', $message, $headers);
 				$_SESSION['mail'] = $_POST['mailform-mail'];
+				$success['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
 				if (isAjax()) {
 					header('Content-Type: application/json');
 					echo json_encode($success);

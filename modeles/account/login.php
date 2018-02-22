@@ -20,7 +20,7 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->prepare("SELECT `id`, `login`, `password`, `mail` FROM Users WHERE `login` = ?");
+			$query = $db->prepare("SELECT `id`, `login`, `password`, `mail`, `notification` FROM Users WHERE `login` = ?");
 			$query->execute([$_POST['lform-login']]);
 			$exist = $query->fetch();
 
@@ -50,6 +50,7 @@
 					$_SESSION['login'] = $exist['login'];
 					$_SESSION['password'] = $exist['password'];
 					$_SESSION['mail'] = $exist['mail'];
+					$_SESSION['notification'] = $exist['notification'];
 					$_SESSION['success'] = $success;
 					$_SESSION['logged'] = 1;
 					unset($_SESSION['lastpage']);

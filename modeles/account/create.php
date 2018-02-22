@@ -81,7 +81,7 @@
 				$query->execute([$_POST['cform-login'], $_POST['cform-password'], $_POST['cform-mail']]);
 				$success['success'] = "Votre compte à bien été créé et un mail de confirmation vient de vous etre envoyé.";
 				$headers = 'FROM: dpaunovi@local.dev';
-				mail('draganpaunovic.charles@gmail.com', 'Formulaire inscription', 'Création de compte', $headers);
+				mail($_POST['cform-mail'], 'Formulaire inscription', 'Création de compte', $headers);
 				if (isAjax()) {
 					header('Content-Type: application/json');
 					echo json_encode($success);

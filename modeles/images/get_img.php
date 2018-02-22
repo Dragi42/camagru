@@ -58,8 +58,11 @@
 						<form method='POST' style='padding: 10px;'>
 							<div style='display: flex; justify-content: left;'>
 								<button id='like-button' name='picture_id' value='".$img['id']."' formaction='./modules/images/like.php'><i class='material-icons' $likeExist>".$likeico."</i><p>".$img['like']."</p></button>
-								<button id='comment-button' name='picture_id' formaction='./?module=images&action=extend&picture_id=".$img['id']."'><i class='material-icons'>".$commentico."</i><p>".$img['comment']."</p></button>
-							</div>
+								<button id='comment-button' name='picture_id' formaction='./?module=images&action=extend&picture_id=".$img['id']."'><i class='material-icons'>".$commentico."</i><p>".$img['comment']."</p></button>";
+								if ($img['user_id'] === $_SESSION['id']) {
+									echo "<button id='delete-button' name='picture_id' formaction='./modules/images/delete.php?picture_id=".$img['id']."'><i class='material-icons'>delete_forever</i></button>";
+								}
+						echo	"</div>
 						</form>
 						<hr>";
 
@@ -91,11 +94,19 @@
 					$query = $db->prepare("SELECT `login` FROM `Users` WHERE `id` = ?");
 					$query->execute([$comment['user_id']]);
 					$login = $query->fetch()['login'];
-					echo	"<div class='comment'>
-								<h4 class='login'>".$login."</h4>
-								<p class='content'>".$comment['content']."</p>
-								<p style='float: right;'>".$comment['date']."</p>
-							</div><hr>";
+					if (!$login) {
+						$query = $db->prepare("DELETE FROM `Comments` WHERE `user_id` = ?");
+						$query->execute([$comment['user_id']]);
+						$query = $db->prepare("UPDATE `Pictures` SET `comment` = `comment` - 1 WHERE `id` = ?");
+						$query->execute([$image['id']]);
+					}
+					else {
+						echo	"<div class='comment'>
+									<h4 class='login'>".$login."</h4>
+									<p class='content'>".$comment['content']."</p>
+									<p style='float: right;'>".$comment['date']."</p>
+								</div><hr>";
+					}
 				}
 			}
 		}

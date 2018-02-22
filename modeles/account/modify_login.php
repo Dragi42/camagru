@@ -50,9 +50,9 @@
 			else {
 				$query = $db->prepare("UPDATE Users SET login = ? WHERE id = ?");
 				$query->execute([$_POST['loginform-login'], $_SESSION['id']]);
-				$headers = 'FROM: dpaunovi@student.42.fr';
+				$headers = 'FROM: dpaunovi@local.dev';
 				$message = "Bonjour ".$_SESSION['login'].".\nOu devrais-je dire... ".$_POST['loginform-login']."";
-				mail('draganpaunovic.charles@gmail.com', 'Nouveau Login', $message, $headers);
+				mail($_SESSION['mail'], 'Nouveau Login', $message, $headers);
 				$success['success'] = "Le login à bien été changé.\nVotre login sera desormais : ".$_POST['loginform-login']."";
 				$_SESSION['login'] = $_POST['loginform-login'];
 				if (isAjax()) {

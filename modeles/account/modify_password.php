@@ -38,11 +38,11 @@
 		if ($db = connect_db()) {
 			$query = $db->prepare("UPDATE Users SET password = ? WHERE id = ?");
 			$query->execute([$newpassword, $_SESSION['id']]);
-			$headers = 'FROM: dpaunovi@student.42.fr';
-			$message = "Bonjour ".$_SESSION['pwform-login'].".\nNous vous confirmons la modification de votre ancien Mot de Passe.\n\nAncien Mot de Passe : ".$_POST['pwform-password']."\nVotre nouveau Mot de Passe : ".$_POST['pwform-newpassword']."";
-			mail('draganpaunovic.charles@gmail.com', 'Modification de mot de passe', $message, $headers);
-			$success['success'] = "Le changement de votre mot de passe à bien été effectué.\nNous vous avons envoyé un mail de confirmation.";
+			$headers = 'FROM: dpaunovi@local.dev';
+			$message = "Bonjour ".$_SESSION['pwform-login'].".\nNous vous confirmons la modification de votre ancien Mot de Passe.";
+			mail($_SESSION['mail'], 'Modification de mot de passe', $message, $headers);
 			$_SESSION['password'] = $newpassword;
+			$success['success'] = "Le changement de votre mot de passe à bien été effectué.\nNous vous avons envoyé un mail de confirmation.";
 			if (isAjax()) {
 				header('Content-Type: application/json');
 				echo json_encode($success);

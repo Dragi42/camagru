@@ -22,9 +22,10 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->prepare("SELECT `id` FROM `Pictures` WHERE `id` = ?");
+			$query = $db->prepare("SELECT `id`, `user_id` FROM `Pictures` WHERE `id` = ?");
 			$query->execute([$_POST['picture_id']]);
-			if (!$query->fetch()) {
+			$user = $query->fetch();
+			if (!$user) {
 				$errors['picture_id'] = "Cette photo n'existe pas.";
 				if (isAjax()) {
 					header('Content-Type: application/json', true, 400);
@@ -34,38 +35,26 @@
 				$_SESSION['errors'] = $errors;
 			}
 			else {
-/*				$query = $db->prepare("SELECT `user_id` FROM `Comments` WHERE `picture_id` = ?");
-				$query->execute([$_POST['picture_id']]);
-				$exist = $query->fetchAll();
-				for ($i = 0; $i < count($exist); $i++) {
-					if ($exist[$i][0] === $_SESSION['id']) {
-						$req = "DELETE FROM `Likes` WHERE `picture_id`= '".$_POST['picture_id']."' AND `user_id` = '".$_SESSION['id']."'";
-						$db->query($req);
-						$req = $db->prepare("UPDATE Pictures SET `like` = `like` - 1 WHERE `id` = ?");
-						$req->execute([$_POST['picture_id']]);
-						$success['dislike'] = "Votre like à bien été retiré.";
-						if (isAjax()) {
-							header('Content-Type: application/json');
-							echo json_encode($success);
-							die();
-						}
-						$_SESSION['success'] = $success;
-						$bool = TRUE;
+				$query = $db->prepare("INSERT INTO `Comments` (`picture_id`,`user_id`, `content`) VALUES (?, ?, ?)");
+				$query->execute([$_POST['picture_id'], $_SESSION['id'], $_POST['content']]);
+				$req = $db->prepare("UPDATE Pictures SET `comment` = `comment` + 1 WHERE `id` = ?");
+				$req->execute([$_POST['picture_id']]);
+				if ($user['user_id'] && $user['user_id'] != $_SESSION['id']) {
+					$query = $db->prepare("SELECT `mail`, `notification` FROM `Users` WHERE `id` = ?");
+					$query->execute([$user['user_id']]);
+					$user = $query->fetch();
+					if ($user['mail'] && $user['notification']) {
+						$headers = 'FROM: dpaunovi@local.dev';
+						mail($user['mail'], 'Votre photo a été commentée.', 'Bonjour, l\'utilisateur '.$_SESSION['login'].' å commenté votre photo !\nVoici le lien de redirection :'.$_SERVER['HTTP_REFERER'], $headers);
 					}
 				}
-				if (!$bool) {*/
-					$query = $db->prepare("INSERT INTO `Comments` (`picture_id`,`user_id`, `content`) VALUES (?, ?, ?)");
-					$query->execute([$_POST['picture_id'], $_SESSION['id'], $_POST['content']]);
-					$req = $db->prepare("UPDATE Pictures SET `comment` = `comment` + 1 WHERE `id` = ?");
-					$req->execute([$_POST['picture_id']]);
-					$success['comment'] = "Votre commentaire à bien été pris en compte.";
-					if (isAjax()) {
-						header('Content-Type: application/json');
-						echo json_encode($success);
-						die();
-					}
-					$_SESSION['success'] = $success;
-//				}
+				$success['comment'] = "Votre commentaire à bien été pris en compte.";
+				if (isAjax()) {
+					header('Content-Type: application/json');
+					echo json_encode($success);
+					die();
+				}
+				$_SESSION['success'] = $success;
 			}
 		}
 	}
