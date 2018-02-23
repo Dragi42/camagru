@@ -6,7 +6,7 @@
 		$token = $_GET["token"];
 	}
 	else {
-		throw new Exception("Valid token not provided.");
+		$errors['token'] = "Ce token n'est pas valide.";
 	}
 	if ($db = connect_db()) {
 
@@ -16,37 +16,34 @@
 		$query->execute([$token]);
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 		$query->closeCursor();
-	
+
 		if ($row) {
 			extract($row);
 			$delta = 86400;
 		}
 		else {
-			throw new Exception("Valid token not provided.");
+			$errors['token'] = "Ce token n'existe pas.";
 		}
 	
 		//  delete token so it can't be used again
 	
-		if ($_SERVER["REQUEST_TIME"] - $tstamp > $delta) {
-			throw new Exception("Token has expired.");
+		if ($_SERVER["REQUEST_TIME"] - $tstamp > $delta && $row) {
+			$errors['token'] = "Le token à expiré.";
 			$query = $db->prepare("DELETE FROM `Users` WHERE login = ? AND token = ? AND tstamp = ?");
 			$query->execute([$login, $token, $tstamp]);
 		}
 		else {
-
-
-!!!!			$query = $db->prepare("UPDATE `login`, `tstamp` FROM `Users` WHERE token = ?");
-!!!!			$query->execute([$token]);
-
-
+			$query = $db->prepare("UPDATE `Users` SET `token` = 1 WHERE `login` = ?");
+			$query->execute([$login]);
+			$success['token'] = "Votre compte à bien été activé.\nVous pouvez desormais vous connecter.";
 		}
 
 	// do one-time action here, like activating a user account
-
-		var_dump($row);
-
-		die();
 	}
+	if (!empty($errors))
+		$_SESSION['errors'] = $errors;
+	else
+		$_SESSION['success'] = $success;
 	header('location: ../../');
 
 ?>

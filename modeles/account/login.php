@@ -20,7 +20,7 @@
 	}
 	else {
 		if ($db = connect_db()) {
-			$query = $db->prepare("SELECT `id`, `login`, `password`, `mail`, `notification` FROM Users WHERE `login` = ?");
+			$query = $db->prepare("SELECT `id`, `login`, `password`, `mail`, `notification`, `token` FROM Users WHERE `login` = ?");
 			$query->execute([$_POST['lform-login']]);
 			$exist = $query->fetch();
 
@@ -37,6 +37,20 @@
 				$_POST['lform-password'] = hash('whirlpool', $_POST['lform-password']);
 				if ($_POST['lform-password'] != $exist['password']) {
 					$errors['lform-password'] = "Mot de passe incorrect";
+					if (isAjax()) {
+						header('Content-Type: application/json', true, 400);
+						echo json_encode($errors);
+						die();
+					}
+					$_SESSION['errors'] = $errors;
+				}
+				else if ($exist['token'] != 1) {
+					$errors['activate'] = "Veuillez activer votre compte avant de vous connecter.";
+					$headers = 'FROM: dpaunovi@local.dev';
+					$url = $_SERVER['HTTP_ORIGIN'].'/modules/account/activate.php?token='.$exist['token'];
+					$message = 'Thank you for signing up at our site.
+						Please go to '.$url.' to activate your account.';
+					mail($exist['mail'], 'Activate your account', $message, $headers);
 					if (isAjax()) {
 						header('Content-Type: application/json', true, 400);
 						echo json_encode($errors);

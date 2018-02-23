@@ -45,7 +45,9 @@
 					$user = $query->fetch();
 					if ($user['mail'] && $user['notification']) {
 						$headers = 'FROM: dpaunovi@local.dev';
-						mail($user['mail'], 'Votre photo a été commentée.', 'Bonjour, l\'utilisateur '.$_SESSION['login'].' å commenté votre photo !\nVoici le lien de redirection :'.$_SERVER['HTTP_REFERER'], $headers);
+						$message = 'Bonjour, l\'utilisateur '.strtoupper($_SESSION['login']).' à commenté votre photo !
+									Voici le lien de redirection vers votre poste : '.$_SERVER['HTTP_REFERER'];
+						mail($user['mail'], 'Votre photo a été commentée.', $message, $headers);
 					}
 				}
 				$success['comment'] = "Votre commentaire à bien été pris en compte.";
