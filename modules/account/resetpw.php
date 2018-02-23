@@ -5,6 +5,6 @@
 	if ($_SESSION['id'])
 		header("location: ../../");
 
-	require '../../modeles/account/activate.php';
+	require '../../modeles/account/resetpw.php';
 
 ?>

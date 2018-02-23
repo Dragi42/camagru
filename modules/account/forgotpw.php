@@ -4,8 +4,5 @@
 		header("location: ./");
 
 	require './view/forgotpw.php';
-	
-	unset($_SESSION['logged']);
-	
 
 ?>

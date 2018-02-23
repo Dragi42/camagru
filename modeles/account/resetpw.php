@@ -12,7 +12,7 @@
 
 	//	Verify token
 
-		$query = $db->prepare("SELECT `login`, `tstamp` FROM `Users` WHERE token = ?");
+		$query = $db->prepare("SELECT `login`, `pwtstamp` FROM `Users` WHERE pwtoken = ?");
 		$query->execute([$token]);
 		$row = $query->fetch(PDO::FETCH_ASSOC);
 		$query->closeCursor();
@@ -27,23 +27,22 @@
 	
 		//  delete token so it can't be used again
 	
-		if ($_SERVER["REQUEST_TIME"] - $tstamp > $delta && $row) {
+		if ($_SERVER["REQUEST_TIME"] - $pwtstamp > $delta && $row) {
 			$errors['token'] = "Le token à expiré.";
-			$query = $db->prepare("DELETE FROM `Users` WHERE login = ? AND token = ? AND tstamp = ?");
-			$query->execute([$login, $token, $tstamp]);
 		}
 		else {
-			$query = $db->prepare("UPDATE `Users` SET `token` = 1 WHERE `login` = ?");
-			$query->execute([$login]);
 			$success['token'] = "Votre compte à bien été activé.\nVous pouvez desormais vous connecter.";
 		}
 
 	// do one-time action here, like activating a user account
 	}
-	if (!empty($errors))
+	if (!empty($errors)) {
 		$_SESSION['errors'] = $errors;
-	else
+		header('location: ../../');
+	}
+	else {
 		$_SESSION['success'] = $success;
-	header('location: ../../');
+		require '../../view/resetpw.php';
+	}
 
 ?>

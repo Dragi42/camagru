@@ -47,7 +47,14 @@
 					$headers = 'FROM: dpaunovi@local.dev';
 					$message = "Bonjour ".$_SESSION['login'].".\nOu devrais-je dire... ".$_POST['loginform-login']."";
 					mail($_SESSION['mail'], 'Nouveau Login', $message, $headers);*/
+					$token = sha1(uniqid($_POST['form-login'], true));
 					$success['success'] = "Un mail de reinitialisation de mot de passe vient de vous etre envoyé à <br>'".$_POST['form-mail']."' Concernant le compte : ".$_POST['form-login']." .";
+					$query = $db->prepare("UPDATE `Users` SET `pwtstamp` = ?, `pwtoken` = ? WHERE `login` = ?");
+					$query->execute([$_SERVER["REQUEST_TIME"], $token, $_POST['form-login']]);
+					$headers = 'FROM: dpaunovi@local.dev';
+					$url = $_SERVER['HTTP_ORIGIN'].'/modules/account/resetpw.php?token='.$token;
+					$message = 'Suite à votre demande de reinitialisation de mot de passe, veuillez cliquer sur le lien suivant : '.$url.'.';
+					mail($_POST['form-mail'], 'Reset password', $message, $headers);
 					if (isAjax()) {
 						header('Content-Type: application/json');
 						echo json_encode($success);
