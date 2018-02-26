@@ -31,18 +31,18 @@
 			$errors['token'] = "Le token à expiré.";
 		}
 		else {
-			$success['token'] = "Votre compte à bien été activé.\nVous pouvez desormais vous connecter.";
+			$success['token'] = "Veuillez entrer votre nouveau mot de passe.";
 		}
 
 	// do one-time action here, like activating a user account
 	}
 	if (!empty($errors)) {
 		$_SESSION['errors'] = $errors;
-		header('location: ../../');
+		require './view/log.php';
 	}
 	else {
 		$_SESSION['success'] = $success;
-		require '../../view/resetpw.php';
+		require './view/resetpw.php';
 	}
 
 ?>

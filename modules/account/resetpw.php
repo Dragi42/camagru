@@ -1,10 +1,8 @@
 <?php
 
-	session_start();
-	require '../../config/init.php';
 	if ($_SESSION['id'])
-		header("location: ../../");
+		header("location: ./");
 
-	require '../../modeles/account/resetpw.php';
+	require './modeles/account/resetpw.php';
 
 ?>

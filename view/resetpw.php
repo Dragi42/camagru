@@ -5,7 +5,7 @@
 	<body>
 		<div class="container">
 			<div class="starter-template">
-			<form action="./modules/account/resetpwd.php?" method="POST" id="sign-in">
+			<form action="./modules/account/resetpwd.php?token=<?= $_GET['token']; ?>" method="POST" id="sign-in">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">

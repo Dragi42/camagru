@@ -52,7 +52,7 @@
 					$query = $db->prepare("UPDATE `Users` SET `pwtstamp` = ?, `pwtoken` = ? WHERE `login` = ?");
 					$query->execute([$_SERVER["REQUEST_TIME"], $token, $_POST['form-login']]);
 					$headers = 'FROM: dpaunovi@local.dev';
-					$url = $_SERVER['HTTP_ORIGIN'].'/modules/account/resetpw.php?token='.$token;
+					$url = $_SERVER['HTTP_ORIGIN']."?module=account&action=resetpw&token=".$token;		// /modules/account/resetpw.php?token='.$token;
 					$message = 'Suite à votre demande de reinitialisation de mot de passe, veuillez cliquer sur le lien suivant : '.$url.'.';
 					mail($_POST['form-mail'], 'Reset password', $message, $headers);
 					if (isAjax()) {

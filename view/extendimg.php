@@ -11,6 +11,6 @@
 				<?php endif ?>
 			</div>
 		</div>
-<!--		<script src="./js/like.js"></script>-->
+		<script src="./js/like.js"></script>
 	</body>
 </html>'
