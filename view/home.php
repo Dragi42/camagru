@@ -22,8 +22,8 @@
 					<canvas></canvas>
 				</div>
 				<form method="POST" id="upload-form" action="./modeles/images/upload.php" enctype="multipart/form-data">
-					<input type="file" name="img">
-					<input type="submit" name="submit">
+					<input type="file" name="image">
+					<input type="submit" name="submit" value="upload">
 				</form>
 			</div>
 			<hr>
@@ -35,6 +35,6 @@
 			</div>
 		</div>
 		<script src="./js/webcam.js"></script>
-<!--		<script src="./js/like.js"></script>-->
+		<script src="./js/like.js"></script>
 	</body>
 </html>

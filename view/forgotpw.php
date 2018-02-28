@@ -27,5 +27,5 @@
 			</div>
 		</div>
 	</body>
-	<script src='./js/account.js'></script>
+<!--	<script src='./js/account.js'></script>-->
 </html>

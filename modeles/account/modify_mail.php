@@ -55,7 +55,7 @@
 				mail($_POST['mailform-mail'], 'Changement d\'adresse e-mail', $message, $headers);
 				mail($_SESSION['mail'], 'Changement d\'adresse e-mail', $message, $headers);
 				$_SESSION['mail'] = $_POST['mailform-mail'];
-				$success['success'] = "L'adresse e-mail de votre compte à bien été changé en ".$_POST['mailform-mail'].".";
+				$success['success'] = $message;
 				if (isAjax()) {
 					header('Content-Type: application/json');
 					echo json_encode($success);

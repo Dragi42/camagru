@@ -3,7 +3,7 @@
 	$errors = [];
 
 	if ($db = connect_db()) {
-		if ($_SESSION['notification'] === 1) {
+		if ($_SESSION['notification'] == 1) {
 			$query = $db->prepare("UPDATE Users SET notification = ? WHERE id = ?");
 			$query->execute([0, $_SESSION['id']]);
 			$headers = 'FROM: dpaunovi@local.dev';
