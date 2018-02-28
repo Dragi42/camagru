@@ -10,7 +10,7 @@
 	$errorMsg = $_FILES["image"]["error"];
 	$explode = explode(".", $name);
 	$extension = end($explode);
-	$path = "images/".sha1(uniqid($_SESSION['id'], true)).".".$extension;
+	$path = "images/".$_SESSION['id']."-".$_SESSION['login']."-".sha1(uniqid($_SESSION['id'], true)).".".$extension;
 	$errors = [];
 
 	//	Starting PHP image upload error handlings
