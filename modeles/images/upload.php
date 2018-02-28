@@ -10,6 +10,7 @@
 	$errorMsg = $_FILES["image"]["error"];
 	$explode = explode(".", $name);
 	$extension = end($explode);
+	$path = "images/".sha1(uniqid($_SESSION['id'], true)).".".$extension;
 	$errors = [];
 
 	//	Starting PHP image upload error handlings
@@ -41,15 +42,22 @@
 		$_SESSION['errors'] = $errors;
 	}
 	else {
-		$moveFile = move_uploaded_file($tmpName, "uploads/".$_SESSION['id'].".".$extension);
+		if (!file_exists('../../images')) {
+			mkdir('../../images');
+		}
+		$moveFile = move_uploaded_file($tmpName, "../../".$path);
 		if($moveFile != true) {
 			$errors['file'] = "File not uploaded. Please try again.";
 			unlink($tmpName);
 			$_SESSION['errors'] = $errors;
 		}
 		else {
-			$success['success'] = "File successfully uploaded.";
-			$_SESSION['success'] = $success;
+			if ($db = connect_db()) {
+				$query = $db->prepare("INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES (?, ?)");
+				$query->execute([$path, $_SESSION['id']]);
+				$success['success'] = "File successfully uploaded.";
+				$_SESSION['success'] = $success;
+			}
 		}
 	}
 
