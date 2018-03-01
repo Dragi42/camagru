@@ -5,7 +5,7 @@ var	video = document.querySelector("#camera-stream"),
 	controls = document.querySelector(".controls"),
 	take_photo_btn = document.querySelector('#take-photo'),
 	delete_photo_btn = document.querySelector('#delete-photo'),
-	download_photo_btn = document.querySelector('#download-photo'),
+	upload_photo_btn = document.querySelector('#upload-photo'),
 	error_message = document.querySelector('#error-message');
 
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -51,13 +51,22 @@ take_photo_btn.addEventListener("click", function(e){
 
 	// Enable delete and save buttons
 	delete_photo_btn.classList.remove("disabled");
-	download_photo_btn.classList.remove("disabled");
-
-	// Set the href attribute of the download button to the snap url.
-	download_photo_btn.setAttribute('value', snap);
+	upload_photo_btn.classList.remove("disabled");
 
 	// Pause video playback of stream.
 	video.pause();
+});
+
+upload_photo_btn.addEventListener("click", function(e){
+
+	e.preventDefault();
+
+	// Show Image.
+	image.innerHTML = "<form method='POST' action='./modeles/images/upload.php'><input type='hidden' name='image'></form>";
+	form = image.children[0];
+	input = image.children[0].children[0];
+	input.setAttribute('value', image.getAttribute('src'));
+	form.submit();
 });
 
 delete_photo_btn.addEventListener("click", function(e){
@@ -69,8 +78,7 @@ delete_photo_btn.addEventListener("click", function(e){
 
 	// Disable delete and save buttons
 	delete_photo_btn.classList.add("disabled");
-	download_photo_btn.classList.add("disabled");
-	download_photo_btn.setAttribute('value', '');
+	upload_photo_btn.classList.add("disabled");
 
 	// Resume playback of stream.
 	video.play();
@@ -131,4 +139,38 @@ function hideUI(){
 	video.classList.remove("visible");
 	snap.classList.remove("visible");
 	error_message.classList.remove("visible");
+}
+
+function readURL(input) {
+	getBase64(input.files[0], mdrmdr);
+}
+
+function mdrmdr(snap) {
+	hideUI();
+	controls.classList.add("visible");
+	var width = video.videoWidth,
+		height = video.videoHeight;
+
+	image.setAttribute('width', width);
+	image.setAttribute('height', height);
+	image.setAttribute('src', snap);
+	image.classList.add("visible");
+
+	// Enable delete and save buttons
+	delete_photo_btn.classList.remove("disabled");
+	upload_photo_btn.classList.remove("disabled");
+
+	// Pause video playback of stream.
+	video.pause();
+}
+
+function getBase64(file, callback) {
+	var reader = new FileReader();
+	reader.readAsDataURL(file);
+	reader.onload = function () {
+		callback(reader.result);
+	};
+	reader.onerror = function (error) {
+		console.log('Error: ', error);
+	};
 }
