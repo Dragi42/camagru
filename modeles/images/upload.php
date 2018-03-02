@@ -5,68 +5,6 @@
 
 	$folder = "../../images/".$_SESSION['id']."-".$_SESSION['login']."/";
 	$errors = [];
-	if ($_FILES) {
-		$name = $_FILES["image"]["name"];
-		$tmpName = $_FILES["image"]["tmp_name"];
-		$type = $_FILES["image"]["type"];
-		$size = $_FILES["image"]["size"];
-		$errorMsg = $_FILES["image"]["error"];
-		$explode = explode(".", $name);
-		$extension = end($explode);
-		$img = sha1(uniqid($_SESSION['id'], true)).".".$extension;
-		$path = $folder.$img;
-	
-		//	Starting PHP image upload error handlings
-
-		if (!$tmpName) {
-			$errors['file'] = "Please choose file.";
-		}
-		else if ($size > 5242880) {	//	if file size is larger than 5MB
-			$errors['file'] = "Please choose less than 5MB file for uploading.";
-			unlink($tmpName);
-		}
-		else if (!preg_match("/\.(gif|jpg|png|jpeg)$/i",$name)) {
-			$errors['file'] = "Please choose the file only with the GIF, PNG or JPG file format.";
-			unlink($tmpName);
-		}
-		else if ($errorMsg == 1) {
-			$errors['file'] = "An unexpected error occured while processing the file. Please try again.";
-		}
-	
-		//	End of PHP image upload error handlings
-	
-		//	Placing folder "uploads" where files will going to uploaded
-		if (!empty($errors)) {
-			if (isAjax()) {
-				header('Content-Type: application/json', true, 400);
-				echo json_encode($errors);
-				die();
-			}
-			$_SESSION['errors'] = $errors;
-		}
-		else {
-			if (!file_exists($folder)) {
-				if (!file_exists('../../images')) {
-					mkdir('../../images');
-				}
-				mkdir($folder);
-			}
-			$moveFile = move_uploaded_file($tmpName, $path);
-			if($moveFile != true) {
-				$errors['file'] = "File not uploaded. Please try again.";
-				unlink($tmpName);
-				$_SESSION['errors'] = $errors;
-			}
-			else {
-				if ($db = connect_db()) {
-					$query = $db->prepare("INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES (?, ?)");
-					$query->execute([$path, $_SESSION['id']]);
-					$success['success'] = "File successfully uploaded.";
-					$_SESSION['success'] = $success;
-				}
-			}
-		}
-	}
 	else {
 		$name = $_POST['image'];
 		$explode = explode("/", explode(",", $name)[0]);
@@ -82,11 +20,13 @@
 			fclose( $ifp ); 
 			return $output_file;
 		}
+
+
 		if (!$name) {
 			$errors['file'] = "Please choose valid file.";
 		}
 		else if ($type != 'image') {
-			$errors['file'] = "Please choose the file only with the GIF, PNG or JPG file format.";
+			$errors['file'] = "Please choose the file only with the PNG or JPG file format.";
 		}
 		if (!empty($errors)) {
 			if (isAjax()) {
@@ -98,13 +38,31 @@
 		}
 		else {
 			if (!file_exists($folder)) {
-				if (!file_exists('../../images')) {
-					mkdir('../../images');
-				}
 				mkdir($folder);
 			}
+
 			$moveFile = base64_to_jpeg($name, $path);
-			if($moveFile != true) {
+
+			if ($extension == 'png') {
+				$image = imagecreatefrompng($path);
+			} else {
+				$image = imagecreatefromjpeg($path);
+			}
+			$filter = imagecreatefrompng("../../images/filter/9.png");
+				
+			$imagewidth = imagesx($image);
+			$imageheight = imagesy($image);
+			$filterwidth = imagesx($filter);
+			$filterheight = imagesy($filter);
+
+			imagecopyresampled($image, $filter, 0, 0, 0, 0, $imagewidth, $imageheight, $filterwidth, $filterheight);
+			if ($extension == 'png') {
+				imagepng($image, $path);
+			} else {
+				imagejpeg($image, $path);
+			}
+
+			if(!$image) {
 				$errors['file'] = "File not uploaded. Please try again.";
 				unlink($tmpName);
 				$_SESSION['errors'] = $errors;
@@ -119,26 +77,5 @@
 			}
 		}
 	}
-
-
-/*
-$user_id = $_SESSION['id'];
-$type = $_FILES['img']['type'];
-
-if ($type == 'image/jpeg' || $type == 'image/png') {
-	$image_name = $_FILES["img"]['name'];
-	$data = file_get_contents($_FILES['img']['tmp_name']);
-	$base64 = 'data:image/png;base64,'.base64_encode($data);
-}
-
-//else {
-//	$base64 = $_POST['img'];
-//}
-
-if (($db = connect_db()) && $base64 != '')
-{
-	$sql = "INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES ('".$base64."', '".$_SESSION['id']."')";
-	$db -> query($sql);
-}*/
 	redirect();
 ?>
