@@ -5,13 +5,13 @@
 
 	$folder = "../../images/".$_SESSION['id']."-".$_SESSION['login']."/";
 	$errors = [];
-	else {
 		$name = $_POST['image'];
 		$explode = explode("/", explode(",", $name)[0]);
 		$extension = explode(";", $explode[1])[0];
 		$type = explode(":", $explode[0])[1];
 		$img = sha1(uniqid($_SESSION['id'], true)).".".$extension;
 		$path = $folder.$img;
+		$filterpath = parse_url($_POST['filter'])['path'];
 
 		function base64_to_jpeg($base64_string, $output_file) {
 			$ifp = fopen( $output_file, 'wb' );
@@ -27,6 +27,12 @@
 		}
 		else if ($type != 'image') {
 			$errors['file'] = "Please choose the file only with the PNG or JPG file format.";
+		}
+		else if (!$filterpath) {
+			$errors['filter'] = "Please select a filter.";
+		}
+		else if (!file_exists("../../".$filterpath)) {
+			$errors['filter'] = "Please select a Valid filter.";
 		}
 		if (!empty($errors)) {
 			if (isAjax()) {
@@ -48,7 +54,7 @@
 			} else {
 				$image = imagecreatefromjpeg($path);
 			}
-			$filter = imagecreatefrompng("../../images/filter/9.png");
+			$filter = imagecreatefrompng("../../".$filterpath);
 				
 			$imagewidth = imagesx($image);
 			$imageheight = imagesy($image);
@@ -76,6 +82,5 @@
 				}
 			}
 		}
-	}
 	redirect();
 ?>

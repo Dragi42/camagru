@@ -1,11 +1,14 @@
 var	video = document.querySelector("#camera-stream"),
 	image = document.querySelector("#snap"),
+	image = document.querySelector("#snap"),
 	start_camera = document.querySelector("#start-camera"),
 	start_upload = document.querySelector("#start-upload"),
 	controls = document.querySelector(".controls"),
+	filters = document.querySelector("#filters"),
 	take_photo_btn = document.querySelector('#take-photo'),
 	delete_photo_btn = document.querySelector('#delete-photo'),
 	upload_photo_btn = document.querySelector('#upload-photo'),
+	filter = 0,
 	error_message = document.querySelector('#error-message');
 
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -52,20 +55,32 @@ take_photo_btn.addEventListener("click", function(e){
 	// Enable delete and save buttons
 	delete_photo_btn.classList.remove("disabled");
 	upload_photo_btn.classList.remove("disabled");
+	take_photo_btn.classList.add("disabled");
 
 	// Pause video playback of stream.
 	video.pause();
 });
+
+function selectFilter(button) {
+	var child = filters.children;
+	for (i = 0; i < child.length; i++) {
+		child[i].style.background = "";
+	}
+	filter = button.children[0].src;
+	button.style.background = "grey";
+}
 
 upload_photo_btn.addEventListener("click", function(e){
 
 	e.preventDefault();
 
 	// Show Image.
-	image.innerHTML = "<form method='POST' action='./modeles/images/upload.php'><input type='hidden' name='image'></form>";
+	image.innerHTML = "<form method='POST' action='./modeles/images/upload.php'><input type='hidden' name='image'><input type='hidden' name='filter'></form>";
 	form = image.children[0];
-	input = image.children[0].children[0];
-	input.setAttribute('value', image.getAttribute('src'));
+	inputimg = image.children[0].children[0];
+	inputfilter = image.children[0].children[1];
+	inputimg.setAttribute('value', image.getAttribute('src'));
+	inputfilter.setAttribute('value', filter);
 	form.submit();
 });
 
@@ -77,11 +92,12 @@ delete_photo_btn.addEventListener("click", function(e){
 	image.classList.remove("visible");
 
 	// Disable delete and save buttons
-	delete_photo_btn.classList.add("disabled");
 	upload_photo_btn.classList.add("disabled");
+	take_photo_btn.classList.remove("disabled");
+	start_upload.children[0].value = '';
 
 	// Resume playback of stream.
-	video.play();
+	showUI();
 });
 
 function	showVideo() {
@@ -125,7 +141,19 @@ function displayErrorMessage(error_msg, error){
 	error_message.innerText = error_msg;
 
 	hideUI();
+	start_upload.style.display = "block";
 	error_message.classList.add("visible");
+}
+
+function showUI(){
+	// Helper function for clearing the app UI.
+
+	controls.classList.remove("visible");
+	start_camera.style.display = "block";
+	start_upload.style.display = "block";
+	video.classList.remove("visible");
+	snap.classList.remove("visible");
+	error_message.classList.remove("visible");
 }
 
 function hideUI(){
@@ -146,8 +174,8 @@ function readURL(input) {
 }
 
 function mdrmdr(snap) {
-	hideUI();
-	controls.classList.add("visible");
+	video.play();
+	showVideo();
 	var width = video.videoWidth,
 		height = video.videoHeight;
 
@@ -157,7 +185,7 @@ function mdrmdr(snap) {
 	image.classList.add("visible");
 
 	// Enable delete and save buttons
-	delete_photo_btn.classList.remove("disabled");
+	take_photo_btn.classList.add("disabled");
 	upload_photo_btn.classList.remove("disabled");
 
 	// Pause video playback of stream.
