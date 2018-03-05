@@ -36,7 +36,7 @@
 			}
 			else {
 				$query = $db->prepare("INSERT INTO `Comments` (`picture_id`,`user_id`, `content`) VALUES (?, ?, ?)");
-				$query->execute([$_POST['picture_id'], $_SESSION['id'], $_POST['content']]);
+				$query->execute([$_POST['picture_id'], $_SESSION['id'], htmlspecialchars($_POST['content'])]);
 				$req = $db->prepare("UPDATE Pictures SET `comment` = `comment` + 1 WHERE `id` = ?");
 				$req->execute([$_POST['picture_id']]);
 				if ($user['user_id'] && $user['user_id'] != $_SESSION['id']) {

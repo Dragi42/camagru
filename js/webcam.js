@@ -1,6 +1,5 @@
 var	video = document.querySelector("#camera-stream"),
 	image = document.querySelector("#snap"),
-	image = document.querySelector("#snap"),
 	start_camera = document.querySelector("#start-camera"),
 	start_upload = document.querySelector("#start-upload"),
 	controls = document.querySelector(".controls"),
@@ -54,8 +53,8 @@ take_photo_btn.addEventListener("click", function(e){
 
 	// Enable delete and save buttons
 	delete_photo_btn.classList.remove("disabled");
-	upload_photo_btn.classList.remove("disabled");
 	take_photo_btn.classList.add("disabled");
+	upload_photo_btn.classList.remove("disabled");
 
 	// Pause video playback of stream.
 	video.pause();
@@ -63,11 +62,22 @@ take_photo_btn.addEventListener("click", function(e){
 
 function selectFilter(button) {
 	var child = filters.children;
+	console.log(image);
+	console.log(image.className);
 	for (i = 0; i < child.length; i++) {
 		child[i].style.background = "";
 	}
-	filter = button.children[0].src;
-	button.style.background = "grey";
+	if (image.className == "visible" || video.className == "visible") {
+		filter = button.children[0].src;
+		button.style.background = "grey";
+		if (!image.src) {
+			take_photo_btn.classList.remove("disabled");
+		}
+		else {
+			upload_photo_btn.classList.remove("disabled");
+		}
+	}
+//	}
 }
 
 upload_photo_btn.addEventListener("click", function(e){
@@ -88,13 +98,18 @@ delete_photo_btn.addEventListener("click", function(e){
 	e.preventDefault();
 	
 	// Hide image.
-	image.setAttribute('src', '');
+	image.removeAttribute('src');
 	image.classList.remove("visible");
 
 	// Disable delete and save buttons
 	upload_photo_btn.classList.add("disabled");
-	take_photo_btn.classList.remove("disabled");
+	take_photo_btn.classList.add("disabled");
 	start_upload.children[0].value = '';
+	var child = filters.children;
+	for (i = 0; i < child.length; i++) {
+		child[i].style.background = "";
+	}
+	filter = "";
 
 	// Resume playback of stream.
 	showUI();
@@ -170,23 +185,21 @@ function hideUI(){
 }
 
 function readURL(input) {
-	getBase64(input.files[0], mdrmdr);
+	var extension = input.files[0].name.split('.').pop();
+	if (extension == "jpeg" || extension == "jpg" || extension == "png") {
+		getBase64(input.files[0], mdrmdr);
+	}
 }
 
 function mdrmdr(snap) {
 	video.play();
 	showVideo();
-	var width = video.videoWidth,
-		height = video.videoHeight;
 
-	image.setAttribute('width', width);
-	image.setAttribute('height', height);
 	image.setAttribute('src', snap);
 	image.classList.add("visible");
 
 	// Enable delete and save buttons
 	take_photo_btn.classList.add("disabled");
-	upload_photo_btn.classList.remove("disabled");
 
 	// Pause video playback of stream.
 	video.pause();

@@ -17,7 +17,7 @@
 					<p id="error-message"></p>
 					<div id="webcam-form" class="controls">
 						<button id="delete-photo" title="Delete Photo"><i class="material-icons">delete</i></button>
-						<button id="take-photo" name="image" title="Take Photo"><i class="material-icons">camera_alt</i></button>
+						<button id="take-photo" name="image" title="Take Photo" class="disabled"><i class="material-icons">camera_alt</i></button>
 						<button id="upload-photo" name="submit" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></button>
 					</div>
 					<canvas></canvas>

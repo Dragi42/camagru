@@ -1,6 +1,6 @@
 <?php
 
-	if (empty($_SESSION))
+	if (!$_SESSION['id'])
 		header("location: ./");
 	require("./modeles/images/get_img.php");
 	require("./modeles/images/get_filter.php");

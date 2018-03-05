@@ -70,11 +70,11 @@ for (var j = 0; j < form.length; j++) {
 				}
 				else {
 					if (p == 1) {
-//						window.location.replace('../')
+						window.location.replace('../')
 					}
 					else {
 						var result = JSON.parse(xhr.responseText)
-						alert(result.success)
+						alert(result.success)												//--------------------------------------
 						var inputs = form[p].querySelectorAll('input')
 						for (var i = 0; i < inputs.length; i++) {
 							inputs[i].value = ''
