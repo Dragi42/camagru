@@ -55,7 +55,7 @@ for (var j = 0; j < form.length; j++) {
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
 				var errors = JSON.parse(xhr.responseText)
-				if (errors['status']) {
+				if (!errors['success']) {
 					var errorsKey = Object.keys(errors);
 					for (var i = 0; i < errorsKey.length; i++) {
 						if (errorsKey[i] != 'status') {

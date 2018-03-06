@@ -47,7 +47,6 @@
 	if(!empty($errors)) {
 		if (isAjax()) {
 			header('Content-Type: application/json');
-			$errors['status'] = 1;
 			echo json_encode($errors);
 			die();
 		}
@@ -69,7 +68,6 @@
 				}
 				if (isAjax()) {
 					header('Content-Type: application/json');
-					$errors['status'] = 1;
 					echo json_encode($errors);
 					die();
 				}

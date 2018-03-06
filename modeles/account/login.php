@@ -12,7 +12,6 @@
 	if(!empty($errors)) {
 		if (isAjax()) {
 			header('Content-Type: application/json');
-			$errors['status'] = 1;
 			echo json_encode($errors);
 			die();
 		}
@@ -29,7 +28,6 @@
 				$errors['lform-login'] = "Le login utilisé n'existe pas";
 				if (isAjax()) {
 					header('Content-Type: application/json');
-					$errors['status'] = 1;
 					echo json_encode($errors);
 					die();
 				}
@@ -41,7 +39,6 @@
 					$errors['lform-password'] = "Mot de passe incorrect";
 					if (isAjax()) {
 						header('Content-Type: application/json');
-						$errors['status'] = 1;
 						echo json_encode($errors);
 						die();
 					}
@@ -56,7 +53,6 @@
 					mail($exist['mail'], 'Activate your account', $message, $headers);
 					if (isAjax()) {
 						header('Content-Type: application/json');
-						$errors['status'] = 1;
 						echo json_encode($errors);
 						die();
 					}

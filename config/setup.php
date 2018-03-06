@@ -50,8 +50,8 @@
 			`id` int(11) unsigned PRIMARY KEY NOT NULL AUTO_INCREMENT,
 			`user_id` int(11) unsigned NOT NULL,
 			`picture_id` int(11) unsigned NOT NULL,
-			`date` DATETIME DEFAULT 'CURRENT_TIMESTAMP',
-			`content` TEXT DEFAULT NOT NULL
+			`date` DATETIME DEFAULT CURRENT_TIMESTAMP,
+			`content` TEXT NOT NULL
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
 
@@ -61,8 +61,8 @@
 #	$db -> query($sql);
 
 	$sql ="
-		INSERT INTO `Users` (`login`, `password`, `mail`) VALUES
-			('dpaunovi', '".hash('whirlpool', 'root')."', 'dpaunovi@student.42.fr');";
+		INSERT INTO `Users` (`login`, `password`, `mail`, tstamp, token) VALUES
+			('dpaunovi', '".hash('whirlpool', 'root')."', 'dpaunovi@student.42.fr', '1', '1');";
 	$db -> query($sql);
 
 ?>

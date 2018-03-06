@@ -10,7 +10,7 @@
 	}
 	if (!empty($errors)) {
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}
@@ -24,7 +24,7 @@
 			if (!$exist) {
 				$errors['form-login'] = "Ce Login n'existe pas, merci d'en choisir un nouveau.";
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
 					echo json_encode($errors);
 					die();
 				}
@@ -34,7 +34,7 @@
 				if ($exist['mail'] != $_POST['form-mail']) {
 					$errors['form-mail'] = "L'adresse mail ne correspond pas a l'adresse utilisée pour ce login.";
 					if (isAjax()) {
-						header('Content-Type: application/json', true, 400);
+						header('Content-Type: application/json');
 						echo json_encode($errors);
 						die();
 					}

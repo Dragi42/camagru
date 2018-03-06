@@ -30,7 +30,7 @@
 			<hr style="border: 0.5px solid grey;">
 			<div class="container">
 				<h2>History of Pictures</h2>
-				<div class="gallery">
+				<div class="gallery vertical-scroll-wrapper">
 				<?php get_user_img(); ?>
 				</div>
 			</div>

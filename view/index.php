@@ -7,7 +7,7 @@
 		<div class="box">
 			<div class="container">
 				<h2>All of Pictures</h2>
-				<div class="gallery">
+				<div class="gallery vertical-scroll-wrapper">
 					<?php get_all_img(); ?>
 				</div>
 			</div>
