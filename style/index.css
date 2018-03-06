@@ -228,7 +228,7 @@ border-radius: 5px;
 	width: 100%;
 }
 
-.app img#snap{
+.app img#snap, .app img#filter-snap {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -305,6 +305,7 @@ border-radius: 5px;
 
 .app video#camera-stream.visible,
 .app img#snap.visible,
+.app img#filter-snap.visible,
 .app #error-message.visible
 {
 	display: block;

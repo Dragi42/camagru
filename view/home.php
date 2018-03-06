@@ -14,6 +14,7 @@
 </a>
 					<video id="camera-stream"></video>
 					<img id="snap"></img>
+					<img id="filter-snap"></img>
 					<p id="error-message"></p>
 					<div id="webcam-form" class="controls">
 						<button id="delete-photo" title="Delete Photo"><i class="material-icons">delete</i></button>

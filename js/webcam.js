@@ -4,6 +4,7 @@ var	video = document.querySelector("#camera-stream"),
 	start_upload = document.querySelector("#start-upload"),
 	controls = document.querySelector(".controls"),
 	filters = document.querySelector("#filters"),
+	filter_snap = document.querySelector("#filter-snap"),
 	take_photo_btn = document.querySelector('#take-photo'),
 	delete_photo_btn = document.querySelector('#delete-photo'),
 	upload_photo_btn = document.querySelector('#upload-photo'),
@@ -68,6 +69,8 @@ function selectFilter(button) {
 	if (image.className == "visible" || video.className == "visible") {
 		filter = button.children[0].src;
 		button.style.background = "grey";
+		filter_snap.setAttribute('src', filter);
+		filter_snap.classList.add("visible");
 		if (!image.src) {
 			take_photo_btn.classList.remove("disabled");
 		}
@@ -98,6 +101,8 @@ delete_photo_btn.addEventListener("click", function(e){
 	// Hide image.
 	image.removeAttribute('src');
 	image.classList.remove("visible");
+	filter_snap.removeAttribute('src');
+	filter_snap.classList.remove("visible");
 
 	// Disable delete and save buttons
 	upload_photo_btn.classList.add("disabled");
