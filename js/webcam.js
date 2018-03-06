@@ -62,8 +62,6 @@ take_photo_btn.addEventListener("click", function(e){
 
 function selectFilter(button) {
 	var child = filters.children;
-	console.log(image);
-	console.log(image.className);
 	for (i = 0; i < child.length; i++) {
 		child[i].style.background = "";
 	}

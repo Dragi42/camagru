@@ -5,7 +5,7 @@
 	if(!$_POST['picture_id']) {
 		$errors['picture_id'] = "Aucune photo n'est séléctionnée.";
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}
@@ -14,7 +14,16 @@
 	else if(!$_POST['content']) {
 		$errors['content'] = "Veuillez entrer un commentaire.";
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
+			echo json_encode($errors);
+			die();
+		}
+		$_SESSION['errors'] = $errors;
+	}
+	else if(ctype_space($_POST['content'])) {
+		$errors['content'] = "Veuillez entrer un commentaire valide...";
+		if (isAjax()) {
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}
@@ -28,7 +37,7 @@
 			if (!$user) {
 				$errors['picture_id'] = "Cette photo n'existe pas.";
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
 					echo json_encode($errors);
 					die();
 				}

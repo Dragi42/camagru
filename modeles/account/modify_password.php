@@ -36,16 +36,16 @@
 			$errors['pwform-password'] = "Le mot de passe entré est incorrecte.";
 		}
 		else if($_POST['pwform-newpassword'] != $_POST['pwform-cpassword']) {
-			$errors['pwform-password'] = "La confirmation de mot de passe ne correspond pas.";
+			$errors['pwform-cpassword'] = "La confirmation de mot de passe ne correspond pas.";
 		}
 		else if($_SESSION['password'] === $newpassword) {
-			$errors['pwform-password'] = "Veuillez entrer un mot de passe different.";
+			$errors['pwform-newpassword'] = "Veuillez entrer un mot de passe different.";
 		}
 	}
 
 	if(!empty($errors)) {
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}

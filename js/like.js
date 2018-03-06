@@ -65,7 +65,8 @@ for (var j = 0; j < button.length; j++) {
 		var xhr = getHttpRequest()
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
-				if (xhr.status != 200) {
+				var success = JSON.parse(xhr.responseText)
+				if (!success['status']) {
 					var errors = JSON.parse(xhr.responseText)
 					var errorsKey = Object.keys(errors)
 					for (var i = 0; i < errorsKey.length; i++) {
@@ -80,20 +81,21 @@ for (var j = 0; j < button.length; j++) {
 					}
 				}
 				else {
-					var success = JSON.parse(xhr.responseText)
 					var successKey = Object.keys(success)
 					for (var i = 0; i < successKey.length; i++) {
 						var key = successKey[i]
 						var result = success[key]
-						if (key === 'like') {
-							button[p].querySelector('p').textContent++
-							button[p].querySelector('i').textContent = "favorite"
-							button[p].querySelector('i').style.color = "red"
-						}
-						else {
-							button[p].querySelector('p').textContent--
-							button[p].querySelector('i').textContent = "favorite_border"
-							button[p].querySelector('i').style.color = "black"
+						if (key != 'status') {
+							if (key === 'like') {
+								button[p].querySelector('p').textContent++
+								button[p].querySelector('i').textContent = "favorite"
+								button[p].querySelector('i').style.color = "red"
+							}
+							else {
+								button[p].querySelector('p').textContent--
+								button[p].querySelector('i').textContent = "favorite_border"
+								button[p].querySelector('i').style.color = "black"
+							}
 						}
 //						var span = document.createElement('span')
 //						span.className = 'help-block'

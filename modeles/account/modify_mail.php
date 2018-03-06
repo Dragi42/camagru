@@ -25,7 +25,7 @@
 	}
 	if(!empty($errors)) {
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}
@@ -40,7 +40,7 @@
 			if ($exist) {
 				$errors['mailform-mail'] = "Cette adresse e-mail est déjà utilisé, merci d'en choisir une nouvelle.";
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
 					echo json_encode($errors);
 					die();
 				}

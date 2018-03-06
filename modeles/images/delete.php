@@ -4,7 +4,7 @@
 	if(!$_GET['picture_id']) {
 		$errors['picture_id'] = "Aucune photo n'est séléctionnée.";
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}
@@ -18,7 +18,7 @@
 			if (!$image) {
 				$errors['picture_id'] = "Cette photo n'existe pas.";
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
 					echo json_encode($errors);
 					die();
 				}
@@ -43,7 +43,7 @@
 				else {
 					$errors['picture_id'] = "Vous ne pouvez pas supprimer cette photo car elle ne vous appartient pas.";
 					if (isAjax()) {
-						header('Content-Type: application/json', true, 400);
+						header('Content-Type: application/json');
 						echo json_encode($errors);
 						die();
 					}

@@ -42,7 +42,6 @@ for (var j = 0; j < form.length; j++) {
 		button.disabled = true
 		button.textContent = 'Loading...'
 		var errorElements = form[p].querySelectorAll('.has-error')
-		console.log(errorElements)
 		for (var i = 0; i < errorElements.length; i++) {
 			errorElements[i].classList.remove('has-error')
 			var span = errorElements[i].querySelector('.help-block')
@@ -56,8 +55,8 @@ for (var j = 0; j < form.length; j++) {
 		var xhr = getHttpRequest();
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
-				if (xhr.status != 200) {
-					var errors = JSON.parse(xhr.responseText)
+				var errors = JSON.parse(xhr.responseText)
+				if (!errors['success']) {
 					var errorsKey = Object.keys(errors)
 					for (var i = 0; i < errorsKey.length; i++) {
 						var key = errorsKey[i]

@@ -22,8 +22,6 @@
 						<button type="submit" class="btn btn-primary">Send Mail</button>
 					</div>
 				</form>
-				<h2>Debug :<h2>
-				<?= var_dump($_SESSION); ?>
 			</div>
 		</div>
 	</body>

@@ -39,7 +39,7 @@
 	}
 	if(!empty($errors)) {
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
 			echo json_encode($errors);
 			die();
 		}
@@ -54,7 +54,7 @@
 			if ($exist) {
 				$errors['loginform-login'] = "Ce Login est déjà utilisé, merci d'en choisir un nouveau.";
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
 					echo json_encode($errors);
 					die();
 				}

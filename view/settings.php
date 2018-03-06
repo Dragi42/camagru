@@ -84,7 +84,7 @@
 			</div>
 			<div class="starter-template">
 				<h2>Send mail notification after you reveived a comment.</h2>
-				<form action="../../modules/account/notif.php" method="POST" id="mailform">
+				<form action="../../modules/account/notif.php" method="POST" id="notifform">
 					<div class="row">
 						<div class="col-md-12">
 							<button type="submit" class="btn btn-primary">Notification: <?= $_SESSION['notification'] == 1 ? "ON" : "OFF"; ?></button>
@@ -92,9 +92,9 @@
 					</div>
 				</form>
 			</div>
-				<h2>Debug :<h2>
-				<?= var_dump($_SESSION); ?>
+<!--				<h2>Debug :<h2>
+				<?= var_dump($_SESSION); ?>-->
 		</div>
-<!--		<script src="./js/settings.js"></script>-->
+		<script src="./js/settings.js"></script>
 	</body>
 </html>

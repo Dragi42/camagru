@@ -54,18 +54,20 @@ for (var j = 0; j < form.length; j++) {
 		var xhr = getHttpRequest();
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState === 4) {
-				if (xhr.status != 200) {
-					var errors = JSON.parse(xhr.responseText)
-					var errorsKey = Object.keys(errors)
+				var errors = JSON.parse(xhr.responseText)
+				if (errors['status']) {
+					var errorsKey = Object.keys(errors);
 					for (var i = 0; i < errorsKey.length; i++) {
-						var key = errorsKey[i]
-						var error = errors[key]
-						var input = document.querySelector('[name=' + key + ']')
-						var span = document.createElement('span')
-						span.className = 'help-block'
-						span.innerHTML = error 
-						input.parentNode.classList.add('has-error')
-						input.parentNode.appendChild(span) 
+						if (errorsKey[i] != 'status') {
+							var key = errorsKey[i]
+							var error = errors[key]
+							var input = document.querySelector('[name=' + key + ']')
+							var span = document.createElement('span')
+							span.className = 'help-block'
+							span.innerHTML = error 
+							input.parentNode.classList.add('has-error')
+							input.parentNode.appendChild(span) 
+						}
 					}
 				}
 				else {

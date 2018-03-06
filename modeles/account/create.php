@@ -46,7 +46,8 @@
 
 	if(!empty($errors)) {
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
+			$errors['status'] = 1;
 			echo json_encode($errors);
 			die();
 		}
@@ -67,7 +68,8 @@
 					$errors['cform-mail'] = "Cette adresse e-mail est déjà utilisée";
 				}
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
+					$errors['status'] = 1;
 					echo json_encode($errors);
 					die();
 				}

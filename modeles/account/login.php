@@ -11,7 +11,8 @@
 
 	if(!empty($errors)) {
 		if (isAjax()) {
-			header('Content-Type: application/json', true, 400);
+			header('Content-Type: application/json');
+			$errors['status'] = 1;
 			echo json_encode($errors);
 			die();
 		}
@@ -27,7 +28,8 @@
 			if(!$exist) {
 				$errors['lform-login'] = "Le login utilisé n'existe pas";
 				if (isAjax()) {
-					header('Content-Type: application/json', true, 400);
+					header('Content-Type: application/json');
+					$errors['status'] = 1;
 					echo json_encode($errors);
 					die();
 				}
@@ -38,7 +40,8 @@
 				if ($_POST['lform-password'] != $exist['password']) {
 					$errors['lform-password'] = "Mot de passe incorrect";
 					if (isAjax()) {
-						header('Content-Type: application/json', true, 400);
+						header('Content-Type: application/json');
+						$errors['status'] = 1;
 						echo json_encode($errors);
 						die();
 					}
@@ -52,7 +55,8 @@
 						Please go to '.$url.' to activate your account.';
 					mail($exist['mail'], 'Activate your account', $message, $headers);
 					if (isAjax()) {
-						header('Content-Type: application/json', true, 400);
+						header('Content-Type: application/json');
+						$errors['status'] = 1;
 						echo json_encode($errors);
 						die();
 					}
@@ -67,6 +71,11 @@
 					$_SESSION['notification'] = $exist['notification'];
 					$_SESSION['success'] = $success;
 					$_SESSION['logged'] = 1;
+					if (isAjax()) {
+						header('Content-Type: application/json');
+						echo json_encode($success);
+						die();
+					}
 					unset($_SESSION['lastpage']);
 					header("location: ../../?".$_SERVER['QUERY_STRING']."");
 					die();
