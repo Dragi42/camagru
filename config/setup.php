@@ -5,14 +5,16 @@
 	try {
 		$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		echo "Connected successfully"; 
+		echo "Connected successfully</br></br>"; 
 	}
 	catch(PDOException $e) {
 		echo "Connection failed: " . $e->getMessage();
 	}
+	$status = $db->query("SHOW DATABASES like 'db_camagru'");
+if (!$status->fetch()) {
 	$createdb = 'CREATE DATABASE IF NOT EXISTS db_camagru CHARACTER SET `utf8`;';
-	$db -> query($createdb);
-	$db -> query('USE db_camagru;');
+	$db->query($createdb);
+	$db->query('USE db_camagru;');
 	
 	$sql ="
 		CREATE TABLE IF NOT EXISTS Users (
@@ -74,5 +76,9 @@
 			('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/21231860_1341380902640947_5086004970850278355_n.jpg?oh=acb3f4869b9a72065b62a9d0eb0f9258&oe=5B48DBF4', '1');
 		";
 	$db -> query($sql);
+}
+else {
+		echo "Database already exist."; 
+}
 
 ?>
