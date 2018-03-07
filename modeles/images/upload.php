@@ -55,7 +55,25 @@
 				$image = imagecreatefromjpeg($path);
 			}
 			$filter = imagecreatefrompng("../../".$filterpath);
-				
+			$size = getimagesize($path);
+			if ($size[0] != 640 || $size[1] != 480) {
+				$resize = [640, 480];
+				while ($size[0] < $resize[0] || $size[1] < $resize[1]) {
+					$ratio = $resize[0]/$resize[1];
+					if ($ratio > 1) {
+						$resize[0] -= 1;
+						$resize[1] = $resize[0]/$ratio;
+					}
+					else {
+						$resize[1] -= 1;
+						$resize[0] = $resize[1]*$ratio;
+					}
+				}
+				$img = imagecreatetruecolor($resize[0], $resize[1]);
+				imagecopy($img, $image, 0, 0, 0, 0, 640, 480);
+				$image = $img;
+			}
+
 			$imagewidth = imagesx($image);
 			$imageheight = imagesy($image);
 			$filterwidth = imagesx($filter);

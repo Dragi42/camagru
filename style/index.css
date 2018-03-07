@@ -61,7 +61,7 @@ body {
 
 .vertical-scroll-wrapper img {
 	padding: 10px;
-	width: 300px;
+	width: 270px;
 	height: 200px;
 }
 
@@ -108,10 +108,20 @@ body {
 
 .comment {
 	display: flex;
+	justify-content: space-between;
 	flex-wrap: nowrap;
 }
 
+.comment .date {
+	width: 75px;
+}
+
 .comment .content {
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 60%;
+	overflow: auto;
 }
 
 h1{
@@ -202,13 +212,13 @@ html{
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
-	width: 90%;
+	width: 100%;
 	justify-content: space-around;
 	margin: auto;
 }
 
 .container {
-	width: 90%;
+	width: 80%;
 /*	margin: 10 20 10 20;*/
 	text-align: center;
 }
@@ -251,6 +261,10 @@ border-radius: 5px;
 	height: 100%;
 	z-index: 10;
 	display: none;
+}
+
+.app img#snap {
+	object-fit: cover;
 }
 
 .app #error-message{
@@ -376,10 +390,6 @@ border-radius: 5px;
 
 
 @media(max-width: 600px){
-	.container{
-		margin: 10px;
-	}
-
 	.app #error-message{
 		padding: 80px 50px;
 		font-size: 18px;

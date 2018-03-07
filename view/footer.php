@@ -2,7 +2,7 @@
 	<body>
 		<div id="footer">
 			<hr />
-			<p>@2017 dpaunovi</p>
+			<p>@2018 dpaunovi</p>
 		</div>
 	</body>
 </html>

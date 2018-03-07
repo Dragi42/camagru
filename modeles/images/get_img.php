@@ -41,7 +41,7 @@
 			$commentico = "chat_bubble_outline";
 		}
 		if (!$extend) {
-			echo "<div style='border: 2px solid black; margin: 10px; display: inline-block;'>
+			echo "<div style='border: 2px solid black; margin: 10px; display: inline-block; height: 300px'>
 					<form method='POST' style='padding: 10px;'>
 						<button name='picture_id' formaction='./?module=images&action=extend&picture_id=".$img['id']."'><img src='".$img['path_img']."' alt='' style='object-fit: cover;'/></button>
 						<div style='display: flex; justify-content: left;'>
@@ -52,8 +52,8 @@
 				</div>";
 		}
 		else {
-			echo "<div class='container no-wrap extend' style='border: 2px solid black;'>
-					<img src='".$img['path_img']."' alt='' style='object-fit: scale-down; background: black;'/>
+			echo "<div class='container'>
+					<img src='".$img['path_img']."' alt='' style='width: 90%;'/>
 					<div class='container'>
 						<form method='POST' style='padding: 10px;'>
 							<div style='display: flex; justify-content: left;'>
@@ -64,14 +64,15 @@
 								}
 						echo	"</div>
 						</form>
-						<hr>";
+					</div>
+					<hr style='border: 1px black solid;'>";
 
 						get_com($img);
 
 			echo "	<div>
-						<form method='POST' action='./modules/images/comment.php?picture_id=".$img['id']."' style='padding: 10px;'>
+						<form method='POST' action='./modules/images/comment.php?picture_id=".$img['id']."' style='padding: 10px; display: flex; flex-wrap: wrap; justify-content: center; flex-direction: column;'>
 							<label>Votre commentaire</label>
-							<textarea name='content' value=''></textarea>
+							<textarea name='content' placeholder='Veuillez entrer votre commentaire' value=''></textarea>
 							<button name='submit' type='submit' value='submit'>Envoyez</button>
 						</form>
 					</div>
@@ -104,7 +105,7 @@
 						echo	"<div class='comment'>
 									<h4 class='login'>".$login."</h4>
 									<p class='content'>".$comment['content']."</p>
-									<p style='float: right;'>".$comment['date']."</p>
+									<p class='date'>".$comment['date']."</p>
 								</div><hr>";
 					}
 				}
