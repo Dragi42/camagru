@@ -1,7 +1,6 @@
 <?php
-	$DB_DSN = 'mysql:host=127.0.0.1';
-	$DB_USER = 'root';
-	$DB_PASSWORD = '';
+
+	require './database.php';
 
 	try {
 		$db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
@@ -55,14 +54,25 @@
 		) ENGINE=InnoDB;";
 	$db -> query($sql);
 
-#	$sql ="#
-#		INSERT INTO `Pictures` (`path_img`, `login`, `describe`, `tags`, `comment`, `like`) VALUES
-#		";
-#	$db -> query($sql);
-
 	$sql ="
 		INSERT INTO `Users` (`login`, `password`, `mail`, tstamp, token) VALUES
 			('dpaunovi', '".hash('whirlpool', 'root')."', 'dpaunovi@student.42.fr', '1', '1');";
+	$db -> query($sql);
+
+	$sql ="
+		INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES
+			('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/22222048_10214409176007463_2477477119281503536_n.jpg?oh=cc1815e65da52d2c98a491f313c8defd&oe=5B0373DA', '1');
+		INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES
+			('https://scontent-cdg2-1.xx.fbcdn.net/v/t31.0-8/27797457_10215551268474445_9145563302530623255_o.jpg?oh=2e8344c403a536c77577c5db2e3c2e3a&oe=5B499BC8', '1');
+		INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES
+			('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/27067595_1478829492229420_6747751786388341850_n.jpg?oh=195404fbac13c4a144ec5a62185ad910&oe=5B3A4A9E', '1');
+		INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES
+			('https://scontent-cdg2-1.xx.fbcdn.net/v/t31.0-8/15000011_1054033524709021_5872171586983305486_o.jpg?oh=35d35b9ef5d0e96122e9defae14b9aef&oe=5B492B03', '1');
+		INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES
+			('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/21752112_1351148538330850_675443866508554138_n.jpg?oh=a7783f201c378b3d273cb74547539145&oe=5B0BCB2D', '1');
+		INSERT INTO `Pictures` (`path_img`, `user_id`) VALUES
+			('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.0-9/21231860_1341380902640947_5086004970850278355_n.jpg?oh=acb3f4869b9a72065b62a9d0eb0f9258&oe=5B48DBF4', '1');
+		";
 	$db -> query($sql);
 
 ?>

@@ -56,9 +56,9 @@
 			}
 			$filter = imagecreatefrompng("../../".$filterpath);
 			$size = getimagesize($path);
-			if ($size[0] != 640 || $size[1] != 480) {
+			if ($size[0] < 640 || $size[1] < 480) {
 				$resize = [640, 480];
-				while ($size[0] < $resize[0] || $size[1] < $resize[1]) {
+				while ($resize[0] > $size[0] || $resize[1] > $size[1]) {
 					$ratio = $resize[0]/$resize[1];
 					if ($ratio > 1) {
 						$resize[0] -= 1;
@@ -69,8 +69,35 @@
 						$resize[0] = $resize[1]*$ratio;
 					}
 				}
+				if ($resize[0] < $size[0]) {
+					$middlewidth = ($size[0] - $resize[0]) / 2;
+					$middleheight = 0;
+				}
+				else if ($resize[1] < $size[1]) {
+					$middlewidth = 0;
+					$middleheight = ($size[1] - $resize[1]) / 2;
+				}
 				$img = imagecreatetruecolor($resize[0], $resize[1]);
-				imagecopy($img, $image, 0, 0, 0, 0, 640, 480);
+				imagecopyresampled($img,$image,0,0,$middlewidth,$middleheight,$resize[0],$resize[1],$resize[0],$resize[1]);
+				$image = $img;
+			}
+			else if ($size[0] > 640 || $size[1] > 480) {
+				$resize = [640, 480];
+				while ($resize[0] < $size[0] && $resize[1] < $size[1]) {
+					$ratio = $resize[0]/$resize[1];
+					$resize[0] += 1;
+					$resize[1] = $resize[0]/$ratio;
+				}
+				if ($resize[0] < $size[0]) {
+					$middlewidth = ($size[0] - $resize[0]) / 2;
+					$middleheight = 0;
+				}
+				else if ($resize[1] < $size[1]) {
+					$middlewidth = 0;
+					$middleheight = ($size[1] - $resize[1]) / 2;
+				}
+				$img = imagecreatetruecolor($resize[0], $resize[1]);
+				imagecopyresampled($img,$image, 0, 0, $middlewidth,$middleheight, $resize[0], $resize[1], $resize[0], $resize[1]);
 				$image = $img;
 			}
 
