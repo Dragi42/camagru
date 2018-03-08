@@ -59,7 +59,9 @@ $contenu = ob_get_clean();
 // Début du code HTML
 include 'view/header.php';
 
+echo "<div id='bloc'>";
 echo $contenu;
+echo "</div>";
 //var_dump($_SESSION);
 //die();
 unset($_SESSION['errors']);

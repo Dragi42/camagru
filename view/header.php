@@ -6,9 +6,9 @@
 		<link rel='stylesheet' type='text/css' href='../style/index.css'>
 		<link rel="icon" type="image/x-icon" href="../favicon.ico"/>
 	</head>
-	<body>
 		<div id='header'>
 			<div class='logo'>
+				<a href='.'><img src='favicon.ico' alt='Camagru' /></a>
 				<a href='.'><h2>Camagru</h2></a>
 			</div>
 			<div class='nav'>
@@ -37,5 +37,4 @@
 					</div>
 				<?php endif; ?>
 		</div>
-	</body>
 </html>
