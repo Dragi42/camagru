@@ -37,7 +37,7 @@
 					$special = 1;
 			}
 			if (!$special || !$text || !$digit)
-				$errors['cform-password1'] = "Votre Mot de Passe doit contenir au moins une lettre, un chiffre et un caractère spécial.";
+				$errors['cform-password'] = "Votre Mot de Passe doit contenir au moins une lettre, un chiffre et un caractère spécial.";
 		}
 	}
 	if(!array_key_exists('cform-mail', $_POST) || !$_POST['cform-mail'] || !filter_var($_POST['cform-mail'], FILTER_VALIDATE_EMAIL)) {

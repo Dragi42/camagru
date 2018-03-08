@@ -23,7 +23,7 @@
 					$special = 1;
 			}
 			if (!$special || !$text || !$digit)
-				$errors['pwform-newpassword1'] = "Votre Mot de Passe doit contenir au moins une lettre, un chiffre et un caractère spécial.";
+				$errors['pwform-newpassword'] = "Votre Mot de Passe doit contenir au moins une lettre, un chiffre et un caractère spécial.";
 		}
 	}
 	if(!array_key_exists('pwform-cpassword', $_POST) || !$_POST['pwform-cpassword']) {

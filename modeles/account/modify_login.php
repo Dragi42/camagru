@@ -16,7 +16,7 @@
 					$errors['loginform-login'] = "Votre login ne peut pas contenir de caractère spéciaux.";
 			}
 			if (!$text)
-				$errors['loginform-login1'] = "Votre Login doit contenir au moins une lettre.";
+				$errors['loginform-login'] = "Votre Login doit contenir au moins une lettre.";
 		}
 	}
 	if(!array_key_exists('loginform-password', $_POST) || !$_POST['loginform-password']) {
