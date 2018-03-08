@@ -20,7 +20,7 @@
 					$special = 1;
 			}
 			if (!$special || !$text || !$digit)
-				$errors['form-password1'] = "Votre Mot de Passe doit contenir au moins une lettre, un chiffre et un caractère spécial.";
+				$errors['form-password'] = "Votre Mot de Passe doit contenir au moins une lettre, un chiffre et un caractère spécial.";
 		}
 	}
 	if(!array_key_exists('form-cpassword', $_POST) || !$_POST['form-cpassword']) {

@@ -45,7 +45,7 @@
 					$_SESSION['errors'] = $errors;
 				}
 				else if ($exist['token'] != 1) {
-					$errors['activate'] = "Veuillez activer votre compte avant de vous connecter.";
+					$errors['lform-login'] = "Veuillez activer votre compte avant de vous connecter.";
 					$headers = 'FROM: dpaunovi@local.dev';
 					$url = $_SERVER['HTTP_ORIGIN'].'/modules/account/activate.php?token='.$exist['token'];
 					$message = 'Thank you for signing up at our site.

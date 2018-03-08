@@ -16,7 +16,7 @@
 					$errors['cform-login'] = "Votre login ne peut pas contenir de caractère spéciaux.";
 			}
 			if (!$text)
-				$errors['cform-login1'] = "Votre Login doit contenir au moins une lettre.";
+				$errors['cform-login'] = "Votre Login doit contenir au moins une lettre.";
 		}
 	}
 	if(!array_key_exists('cform-password', $_POST) || !$_POST['cform-password']) {
